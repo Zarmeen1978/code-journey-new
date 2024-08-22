@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "code-journey",
+    "slug": "code-journey",
+    "scheme": "myapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./app/assets/mimo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "plugins":[
+"expo-router"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "package":"com.codie.codejourney"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./app/assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package":"com.codejourney.codelearning"
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
