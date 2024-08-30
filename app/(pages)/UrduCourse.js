@@ -32,7 +32,7 @@ const UrduCourse = () => {
 
       {/* <Text style={[styles.subtitle, styles.fontUrdu]}>بذریعہ TubeCoder</Text> */}
       <Image
-        source={require('../assets/Cplus.png')}
+        source={require('../assets/C.png')}
         resizeMethod='contain'
         style={styles.image}
       />

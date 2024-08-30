@@ -22,6 +22,10 @@ const _layout = () => {
       options={{
         headerShown:false
       }} />
+       <Stack.Screen name='CongratulationScreen'
+      options={{
+        headerShown:false
+      }} />
       <Stack.Screen name='UrduCourse'
       options={{
         headerShown:false

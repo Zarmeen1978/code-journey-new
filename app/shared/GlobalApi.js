@@ -9,7 +9,7 @@ const api = create({
   const getSlider=()=>api.get('/sliders?populate=*');
   const getVideoCourse=()=>api.get('vide-courses?populate=*');
   const getCourseList=()=>api.get('courses?populate=*');
-  const getInformation=()=>api.get('details?populate=*');
+  //const getInformation=()=>api.get('details?populate=*');
   const getArticle=()=>api.get('articles?populate=*locale=ur');
   //const getCourseList=(type)=>api.get('course-list?filters[type][$eq]='+type+'&populate=*')
   //sliders?populate=*
@@ -17,7 +17,7 @@ const api = create({
     getSlider,
     getVideoCourse,
     getCourseList,
-    getInformation,
+    //getInformation,
     getArticle
   }
   //vide-courses?populate=*

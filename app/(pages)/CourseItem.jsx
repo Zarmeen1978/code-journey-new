@@ -21,7 +21,7 @@ const CourseItem = () => {
     <ScrollView style={{padding:30,backgroundColor:'#9F2B68	'}}>
    <WelcomeHeader/>
    <Slider/>
-   <Paragraph/>
+   {/* <Paragraph/> */}
    <VideoCourse/>
    <CourseList/>
     </ScrollView>

@@ -12,7 +12,6 @@ const VideoCourse = () => {
       const resp = (await GlobalApi.getVideoCourse()).data;
       if (resp && resp.data) {  // Check if resp.data is not null or undefined
         const result = resp.data.map((item) => ({
-          
           id: item.id,
           name: item.attributes.name,
           des: item.attributes.description,

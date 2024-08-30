@@ -31,14 +31,14 @@ export default function CourseList() {
 
         }
       ))
-       console.log("here is the data from course List",result)
         setCourseList(result); 
     }
 
     const onPressCourse=(course)=>{
         
         navigation.navigate('CourseDetails',{courseData:course,
-          courseType:'text'})
+          courseType:'text'}
+        )
     }
   return (
     <View style={{marginTop:10}}>

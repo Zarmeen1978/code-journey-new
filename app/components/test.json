@@ -1,0 +1,136 @@
+{
+    "data": [
+      {
+        "id": 1,
+        "attributes": {
+          "name": "C++",
+          "description": " ایک طاقتور، اعلیٰ کارکردگی کا حامل پروگرامنگ زبان ہے جو C++ پروگرامنگ زبان کو آبجیکٹ پر مبنی خصوصیات کے ساتھ وسعت دیتی ہے۔ یہ 1983 میں بیارنے سٹروپ نے تیار کی تھی، اور C++ مؤثر میموری مینجمنٹ، نچلی سطح کے ڈیٹا کی ہیرا پھیری کی اجازت دیتا ہے اور سسٹم/سافٹ ویئر ڈویلپمنٹ، گیم ڈویلپمنٹ، اور اعلیٰ کارکردگی والے ایپلی کیشنز میں وسیع پیمانے پر استعمال ہوتا ہے۔ یہ کئی پروگرامنگ پیراڈائمز کی حمایت کرتا ہے، جن میں پروسیجرل، آبجیکٹ پر مبنی، اور جنیرک پروگرامنگ شامل ہیں، جس کی بدولت یہ مختلف قسم کے سافٹ ویئر ڈویلپمنٹ کے لیے موزوں ہے۔ وسیع لائبریریز اور ایک مضبوط کمیونٹی کے ساتھ، C++ دنیا بھر میں ڈویلپرز کے لیے ایک اہم ٹول کے طور پر برقرار ہے۔\n\n\n\n\n\n\n",
+          "createdAt": "2024-08-21T19:38:36.035Z",
+          "updatedAt": "2024-08-26T18:51:51.355Z",
+          "publishedAt": "2024-08-21T19:38:37.824Z",
+          "locale": "en",
+          "image": {
+            "data": {
+              "id": 6,
+              "attributes": {
+                "name": "C++ one.png",
+                "alternativeText": null,
+                "caption": null,
+                "width": 1920,
+                "height": 1080,
+                "formats": {
+                  "large": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dovrzhesz/image/upload/v1723047690/large_C_one_b39e73790b.png",
+                    "hash": "large_C_one_b39e73790b",
+                    "mime": "image/png",
+                    "name": "large_C++ one.png",
+                    "path": null,
+                    "size": 50.95,
+                    "width": 1000,
+                    "height": 563,
+                    "sizeInBytes": 50946,
+                    "provider_metadata": {
+                      "public_id": "large_C_one_b39e73790b",
+                      "resource_type": "image"
+                    }
+                  },
+                  "small": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dovrzhesz/image/upload/v1723047690/small_C_one_b39e73790b.png",
+                    "hash": "small_C_one_b39e73790b",
+                    "mime": "image/png",
+                    "name": "small_C++ one.png",
+                    "path": null,
+                    "size": 21.88,
+                    "width": 500,
+                    "height": 281,
+                    "sizeInBytes": 21876,
+                    "provider_metadata": {
+                      "public_id": "small_C_one_b39e73790b",
+                      "resource_type": "image"
+                    }
+                  },
+                  "medium": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dovrzhesz/image/upload/v1723047690/medium_C_one_b39e73790b.png",
+                    "hash": "medium_C_one_b39e73790b",
+                    "mime": "image/png",
+                    "name": "medium_C++ one.png",
+                    "path": null,
+                    "size": 36.38,
+                    "width": 750,
+                    "height": 422,
+                    "sizeInBytes": 36379,
+                    "provider_metadata": {
+                      "public_id": "medium_C_one_b39e73790b",
+                      "resource_type": "image"
+                    }
+                  },
+                  "thumbnail": {
+                    "ext": ".png",
+                    "url": "https://res.cloudinary.com/dovrzhesz/image/upload/v1723047689/thumbnail_C_one_b39e73790b.png",
+                    "hash": "thumbnail_C_one_b39e73790b",
+                    "mime": "image/png",
+                    "name": "thumbnail_C++ one.png",
+                    "path": null,
+                    "size": 10.33,
+                    "width": 245,
+                    "height": 138,
+                    "sizeInBytes": 10332,
+                    "provider_metadata": {
+                      "public_id": "thumbnail_C_one_b39e73790b",
+                      "resource_type": "image"
+                    }
+                  }
+                },
+                "hash": "C_one_b39e73790b",
+                "ext": ".png",
+                "mime": "image/png",
+                "size": 20.27,
+                "url": "https://res.cloudinary.com/dovrzhesz/image/upload/v1723047691/C_one_b39e73790b.png",
+                "previewUrl": null,
+                "provider": "cloudinary",
+                "provider_metadata": {
+                  "public_id": "C_one_b39e73790b",
+                  "resource_type": "image"
+                },
+                "createdAt": "2024-08-07T16:21:38.174Z",
+                "updatedAt": "2024-08-07T16:21:38.174Z"
+              }
+            }
+          },
+          "article": {
+            "id": 1,
+            "name": " سیکھیں C++",
+            "description": " C++\n ایک مقبول پروگرامنگ زبان ہے۔\n\nC++ کا استعمال کمپیوٹر پروگرامز بنانے کے لیے کیا جاتا ہے اور یہ گیم ڈویلپمنٹ میں سب سے زیادہ استعمال ہونے والی زبانوں میں سے ایک ہے۔\n\nC++ کو C کی توسیع کے طور پر تیار کیا گیا تھا، اور دونوں زبانوں کا نحو (syntax) تقریباً ایک جیسا ہے۔\n\n\n\n\n\n\n",
+            "input": null,
+            "output": null
+          },
+          "localizations": {
+            "data": [
+              {
+                "id": 2,
+                "attributes": {
+                  "name": "C++",
+                  "description": "، C++ دنیا بھر میں ڈویلپرز کے لیے ایک اہم ٹول کے طور پر برقرار ہے۔",
+                  "createdAt": "2024-08-26T18:51:51.266Z",
+                  "updatedAt": "2024-08-26T19:13:52.030Z",
+                  "publishedAt": "2024-08-26T19:02:58.542Z",
+                  "locale": "ur-PK"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "meta": {
+      "pagination": {
+        "page": 1,
+        "pageSize": 25,
+        "pageCount": 1,
+        "total": 1
+      }
+    }
+  }
