@@ -6,7 +6,7 @@ const VideoCourse = () => {
   const [videoList,setVideoList]=useState([])
   useEffect(()=>{
     getVideoCourse();
-  })
+  }, [])
   const getVideoCourse = async () => {
     try {
       const resp = (await GlobalApi.getVideoCourse()).data;

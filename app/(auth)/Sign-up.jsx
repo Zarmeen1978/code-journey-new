@@ -5,8 +5,10 @@ import FormField from '../components/FormField';
 import Button from '../components/Button';
 import { Link } from 'expo-router';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import GlobalApi from '../shared/GlobalApi';
 import { createUser } from '../../lib/appwrite';
 import { useNavigation } from '@react-navigation/native';
+
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -17,9 +19,28 @@ const SignUp = () => {
     username: ''
   });
 
+  // Update submit function to handle API call
   const submit = async () => {
-    console.log('hello');
-    navigation.navigate('InfoScreen'); // Navigate to InfoScreen
+    setIsSubmitting(true);  // Disable the form while submitting
+    try {
+      const response = await GlobalApi.registerUser({
+        username: form.username,
+        email: form.email,
+        password: form.password
+      });
+
+      if (response.ok) {
+        Alert.alert('Success', 'User registered successfully');
+        navigation.navigate('InfoOneScreen'); // Navigate to InfoScreen
+      } else {
+        Alert.alert('Error', response.data?.message || 'Registration failed');
+      }
+    } catch (error) {
+      console.error('Error registering user:', error);
+      Alert.alert('Error', 'An unexpected error occurred');
+    } finally {
+      setIsSubmitting(false);  // Re-enable the form after submission
+    }
   };
 
   return (
@@ -61,15 +82,15 @@ const SignUp = () => {
             password: e
           })} 
         />
-        {/* <TouchableOpacity 
+        <TouchableOpacity 
           style={styles.btn}
-          onPress={submit}
+          onPress={submit}  // Use the submit function
+          disabled={isSubmitting}  // Disable button while submitting
         >
-          <Text style={styles.btnText}>Sign Up</Text>
-        </TouchableOpacity> */}
-        <Link href='/InfoOneScreen' style={styles.btn}>
-        <Text style={styles.btnText}>Sign up</Text>  
-        </Link>
+          <Text style={styles.btnText}>
+            {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+          </Text>
+        </TouchableOpacity>
       
         <View style={styles.secondSection}>
           <Text style={{color:'#ccc', fontSize:16}}>

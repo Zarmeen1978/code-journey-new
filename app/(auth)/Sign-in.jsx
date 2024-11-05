@@ -6,40 +6,52 @@ import Button from '../components/Button'
 import { Link } from 'expo-router'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { getCurrentUser, signIn } from '../../lib/appwrite'
+import { useRouter } from 'expo-router';  
+import GlobalApi from '../shared/GlobalApi';
+
 const SignIn = () => {
   const [form, setForm] = useState({
     email: '',
     password: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const submit = async () => {
-    if (!form.email === "" || !form.password === "" ) {
-      Alert.alert('Error', "Please fill in all the fields");
+    if (form.email === '' || form.password === '') {
+      Alert.alert('Error', 'Please fill in all the fields');
       return;
     }
-  
+
     setIsSubmitting(true);
     try {
-       await signIn(form.email, form.password);
-       const result = await getCurrentUser();
-      // setUser(result);
-       //setIsLogged(true);
-       Alert.alert("Sucess","User signed in successfully");
-      router.replace('/Learn');
-    } catch (error) {
-        Alert.alert('Error', error.message || 'An unexpected error occurred');
+      // Call the login API with the email and password
+      const response = await GlobalApi.loginUser(form.email, form.password);
+      
+      if (response.ok) {
+        // Successful login
+        Alert.alert('Success', 'User signed in successfully');
+        const jwt = response.data.jwt;  // Store the JWT if needed
+        const user = response.data.user;
+        // Navigate to another screen
+        router.replace('/CourseItem');  // Replace with the actual route you want to navigate to
+      } else {
+        // Handle error response
+        Alert.alert('Error', response.data.message || 'Login failed');
       }
-    finally {
+    } catch (error) {
+      // Handle any unexpected errors
+      Alert.alert('Error', error.message || 'An unexpected error occurred');
+    } finally {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.firstSection}>
-        <View style={styles.imageContainer}>
+          <View style={styles.imageContainer}>
             <Image 
               source={require('../assets/mimo.png')}
               resizeMode='contain' 
@@ -49,7 +61,7 @@ const SignIn = () => {
           <Text style={styles.textStyle}>Log in</Text>
           {/* Form Field One */}
           <FormField 
-          style={styles.mmr}
+            style={styles.mmr}
             title='Email'
             value={form.email}
             handleChangeText={(e) => setForm({
@@ -60,7 +72,7 @@ const SignIn = () => {
           />
           {/* Form Field Two */}
           <FormField 
-          style={styles.mmr}
+            style={styles.mmr}
             title='Password'
             value={form.password}
             handleChangeText={(e) => setForm({
@@ -76,7 +88,7 @@ const SignIn = () => {
             <Text style={styles.btnText}>Sign In</Text>
           </TouchableOpacity>
           <View style={styles.secondSection}>
-            <Text style={{color:'#ccc', fontSize:16}}>Don't have an account</Text>
+            <Text style={{color:'#ccc', fontSize:16}}>Don't have an account?</Text>
             <Link 
               href='/Sign-up'
               style={{
@@ -92,8 +104,9 @@ const SignIn = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
+
 
 export default SignIn
 
