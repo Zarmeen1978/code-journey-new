@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import {Slot, Stack} from 'expo-router'
 const RootLayout=()=> {
-  useEffect(()=>{
-   // if(error) throw error;
-  })
+
   return (
     
         <Stack>
