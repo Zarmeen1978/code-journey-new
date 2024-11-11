@@ -1,46 +1,47 @@
-import {Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import FormField from '../components/FormField'
-import Button from '../components/Button'
-import { Link } from 'expo-router'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { getCurrentUser, signIn } from '../../lib/appwrite'
-import { useRouter } from 'expo-router';  
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import FormField from '../components/FormField';
+import Button from '../components/Button';
+import { Link } from 'expo-router';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useRouter } from 'expo-router';
 import GlobalApi from '../shared/GlobalApi';
+import AppContext from '../context/AppContext';
+
 
 const SignIn = () => {
-  const [form, setForm] = useState({
-    email: '',
-    password: ''
-  });
+  const [form, setForm] = useState({ email: '', password: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+  const { user, setUser } = useContext(AppContext);
 
   const submit = async () => {
-    if (form.email === '' || form.password === '') {
+    if (!form.email || !form.password) {
       Alert.alert('Error', 'Please fill in all the fields');
       return;
     }
 
     setIsSubmitting(true);
     try {
-      // Call the login API with the email and password
       const response = await GlobalApi.loginUser(form.email, form.password);
+
       
-      if (response.ok) {
-        // Successful login
+      if (response.ok && response.data) {
+        const { jwt, user } = response.data;
+        console.log('I CAMEEEEEEE');
+        
+        setUser({ jwt, username: user.username });
+        console.log('User data set:', { jwt, username: user.username });
+
         Alert.alert('Success', 'User signed in successfully');
-        const jwt = response.data.jwt;  // Store the JWT if needed
-        const user = response.data.user;
-        // Navigate to another screen
-        router.replace('/CourseItem');  // Replace with the actual route you want to navigate to
+        
+        router.replace('/CourseItem'); // Replace with the actual route
       } else {
-        // Handle error response
-        Alert.alert('Error', response.data.message || 'Login failed');
+        Alert.alert('Error', response.data?.message || 'Login failed');
       }
     } catch (error) {
-      // Handle any unexpected errors
+      console.error("Login error:", error);
       Alert.alert('Error', error.message || 'An unexpected error occurred');
     } finally {
       setIsSubmitting(false);
@@ -54,32 +55,28 @@ const SignIn = () => {
           <View style={styles.imageContainer}>
             <Image 
               source={require('../assets/mimo.png')}
-              resizeMode='contain' 
+              resizeMode="contain" 
               style={styles.sizeImage} 
             />
           </View>
           <Text style={styles.textStyle}>Log in</Text>
-          {/* Form Field One */}
+          
           <FormField 
             style={styles.mmr}
-            title='Email'
+            title="Email"
             value={form.email}
-            handleChangeText={(e) => setForm({
-              ...form,
-              email: e
-            })} 
-            keyboardType='email-address' 
+            handleChangeText={(e) => setForm({ ...form, email: e })} 
+            keyboardType="email-address" 
           />
-          {/* Form Field Two */}
+          
           <FormField 
             style={styles.mmr}
-            title='Password'
+            title="Password"
             value={form.password}
-            handleChangeText={(e) => setForm({
-              ...form,
-              password: e
-            })} 
+            handleChangeText={(e) => setForm({ ...form, password: e })} 
+            secureTextEntry
           />
+          
           <TouchableOpacity 
             style={styles.btn}
             onPress={submit}  
@@ -87,16 +84,12 @@ const SignIn = () => {
           >
             <Text style={styles.btnText}>Sign In</Text>
           </TouchableOpacity>
+          
           <View style={styles.secondSection}>
-            <Text style={{color:'#ccc', fontSize:16}}>Don't have an account?</Text>
+            <Text style={{ color: '#ccc', fontSize: 16 }}>Don't have an account?</Text>
             <Link 
-              href='/Sign-up'
-              style={{
-                marginLeft:3,
-                color:'#C36FDE',
-                textDecorationLine: 'underline',
-                fontSize: 16,
-              }}
+              href="/Sign-up"
+              style={styles.link}
             >
               Sign Up
             </Link>
@@ -107,14 +100,13 @@ const SignIn = () => {
   );
 };
 
-
-export default SignIn
+export default SignIn;
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#4B0082',
     height: '100%',
-      paddingTop:12
+    paddingTop: 12,
   },
   firstSection: {
     width: '100%',
@@ -125,16 +117,15 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: '100%',
-    alignItems: 'center', // Center the image horizontally within its container
-    justifyContent: 'center', // Center the image vertically within its container
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  mmr:{
-    //marginLeft:20,
-    backgroundColor:'#fff',
-    borderRadius:12,
+  mmr: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
     height: 39,
-     width: '100%',
-     paddingLeft:13
+    width: '100%',
+    paddingLeft: 13,
   },
   sizeImage: {
     width: 350,
@@ -166,6 +157,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     fontWeight: '300',
     color: '#ccc',
-    marginTop: 18
-  }
-})
+    marginTop: 18,
+  },
+  link: {
+    marginLeft: 3,
+    color: '#C36FDE',
+    textDecorationLine: 'underline',
+    fontSize: 16,
+  },
+});

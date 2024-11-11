@@ -25,23 +25,22 @@ export default function App(){
   // if(!isLoading && isLoggedIn) return <Redirect
   // href='/Learn'/>
   return (
-    <SafeAreaView style={styles.container}>
-      <Image  style={{width:'240px',height:'160px'}} source={require('../app/assets/mimo.png')}/>
-      <Text style={styles.heading}> <p>CODE JOURNEY</p></Text>
-     {/* <Text style={styles.heading}><p>خوش آمدید</p></Text>  */}
-    <Button
-      title="Start Your Journey"
-      handlePress={()=>router.push('/Sign-in')}
-       />
-       {/* <Button
-      title="کوڈنگ سیکھیں"
-      handlePress={()=>router.push('/Sign-in')}
-       /> */}
-       {/*  "welcome": "خوش آمدید",
-    "learnCoding": "کوڈنگ سیکھیں"
-   */}
-    </SafeAreaView>
-    
+      <SafeAreaView style={styles.container}>
+        <Image  style={{width:'240px',height:'160px'}} source={require('../app/assets/mimo.png')}/>
+        <Text style={styles.heading}> <p>CODE JOURNEY</p></Text>
+      {/* <Text style={styles.heading}><p>خوش آمدید</p></Text>  */}
+      <Button
+        title="Start Your Journey"
+        handlePress={()=>router.push('/Sign-in')}
+        />
+        {/* <Button
+        title="کوڈنگ سیکھیں"
+        handlePress={()=>router.push('/Sign-in')}
+        /> */}
+        {/*  "welcome": "خوش آمدید",
+      "learnCoding": "کوڈنگ سیکھیں"
+    */}
+      </SafeAreaView>
   )
 }
 

@@ -1,21 +1,36 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, Button, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import React, { useContext } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  ScrollView,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import AppContext from "../context/AppContext";
 
-const Profile = ({ user }) => {
+const Profile = ({}) => {
   const navigation = useNavigation();
+  const { user } = useContext(AppContext);
+  console.log(user, "Motorrrrrrrrrrr");
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.backButton}
+      >
         <Ionicons name="arrow-back-sharp" size={24} color="black" />
       </TouchableOpacity>
 
       {/* Profile Header */}
       <View style={styles.header}>
-        <Image source={require('../assets/coding.jpg')} style={styles.avatar} />
+        <Image source={require("../assets/coding.jpg")} style={styles.avatar} />
         <Text style={styles.name}>Ahmad Mudassir</Text>
       </View>
 
@@ -42,10 +57,10 @@ const Profile = ({ user }) => {
 
       {/* Logout Button */}
       <Button
-       // color='#C36FDE'
-       color='#5C36A6'
+        // color='#C36FDE'
+        color="#5C36A6"
         title="Log Out"
-        onPress={() => alert('Logged out')}
+        onPress={() => alert("Logged out")}
       />
     </SafeAreaView>
   );
@@ -54,27 +69,28 @@ const Profile = ({ user }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: "#f4f4f4",
     padding: 15,
   },
   backButton: {
-    alignSelf: 'flex-start',
-    marginLeft:19,marginTop:18
+    alignSelf: "flex-start",
+    marginLeft: 19,
+    marginTop: 18,
   },
   header: {
     //backgroundColor: '#C36FDE',
     padding: 20,
-    alignItems: 'center',
-    width: '100%',
+    alignItems: "center",
+    width: "100%",
     height: 200,
     borderBottomLeftRadius: 100,
     borderBottomRightRadius: 100,
   },
   headerTitle: {
     fontSize: 35,
-    fontWeight: '300',
-    color: '#C36FDE',
-    marginBottom: 10
+    fontWeight: "300",
+    color: "#C36FDE",
+    marginBottom: 10,
   },
   avatar: {
     width: 100,
@@ -82,37 +98,41 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginBottom: 10,
     borderWidth: 3,
-    borderColor: '#ffffff',
+    borderColor: "#ffffff",
   },
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#C36FDE',
+    fontWeight: "bold",
+    color: "#C36FDE",
   },
   sectionTitle: {
     fontSize: 25,
     marginVertical: 12,
-    fontWeight: 'bold',
-    marginLeft:12,
-    color: '#333',
+    fontWeight: "bold",
+    marginLeft: 12,
+    color: "#333",
   },
   infoContainer: {
     marginBottom: 25,
   },
   infoBox: {
-    backgroundColor: '#c7c7c7',
+    backgroundColor: "#c7c7c7",
     borderRadius: 12,
-    padding: 12,display:'flex',alignItems:'flex-start',flexDirection:'row',
-    gap:23,margin:12
+    padding: 12,
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "row",
+    gap: 23,
+    margin: 12,
   },
   infoLabel: {
-    color: '#454545',
-    fontWeight: 'bold',
+    color: "#454545",
+    fontWeight: "bold",
     marginBottom: 5,
   },
   infoText: {
     fontSize: 16,
-    color: '#333',
+    color: "#333",
   },
 });
 

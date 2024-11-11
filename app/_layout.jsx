@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import {Slot, Stack} from 'expo-router'
+import {Slot, Stack} from 'expo-router';
+import { UserProvider } from './shared/UserContext';
+import AppProvider from './context/AppProvider';
+
 const RootLayout=()=> {
   useEffect(()=>{
    // if(error) throw error;
   })
   return (
-    
+    <AppProvider>
         <Stack>
           <Stack.Screen name='index' 
           options={{headerShown:false}}/>
@@ -19,6 +22,7 @@ const RootLayout=()=> {
            {/* <Stack.Screen name="/search/[query]" 
           options={{headerShown:false}}  /> */}
         </Stack>
+      </AppProvider>  
       )
      }
 
