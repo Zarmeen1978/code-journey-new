@@ -148,7 +148,7 @@ const SignUp = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
