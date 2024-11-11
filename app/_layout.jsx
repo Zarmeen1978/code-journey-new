@@ -4,9 +4,7 @@ import { UserProvider } from './shared/UserContext';
 import AppProvider from './context/AppProvider';
 
 const RootLayout=()=> {
-  useEffect(()=>{
-   // if(error) throw error;
-  })
+
   return (
     <AppProvider>
         <Stack>

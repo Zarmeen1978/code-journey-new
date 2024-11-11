@@ -28,21 +28,23 @@ const VideoCourse = () => {
   
   return (
     <View style={{marginTop:15}}>
-      <Text style={{fontSize:20,fontWeight:'bold',marginBottom:3}}>Video Course</Text>
+      <Text style={{color:'white',
+        fontSize:20,fontWeight:'bold',marginBottom:3}}>Course</Text>
       <FlatList
       data={videoList}
-      horizontal={true}
+     horizontal={true}
       showsHorizontalScrollIndicator={false}
       renderItem={({item})=>(
         <View>
-          <Link href='/UrduCourse'>
+          <Link href='/CourseList'>
           <Image
           source={{uri:item.image}}
-          style={{width:180,height:100, marginRight:10,
+          style={{width:200,height:120, marginRight:8,marginTop:12,
             borderRadius:7
           }}
           
-          /></Link>
+          />
+          </Link>
           </View>
       )}
       />

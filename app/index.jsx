@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     display:'flex',
     flex:1,
     alignItems:'center',
+    gap:45,
     justifyContent:'center',
     backgroundColor:'#4B0082'
   },

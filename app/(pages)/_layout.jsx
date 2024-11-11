@@ -2,10 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import { UserContext, UserProvider } from '../shared/UserContext'
+
 const _layout = () => {
   return (
-    <UserProvider>
       <>
       <Stack>
       <Stack.Screen name='CourseItem'
@@ -35,7 +34,6 @@ const _layout = () => {
       </Stack>
       <StatusBar  backgroundColor='#4B0082' style='light'/>
     </>
-  </UserProvider>
   )
 }
 
