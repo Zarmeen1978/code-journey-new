@@ -14,16 +14,18 @@ import VideoCourse from '../components/VideoCourse'
 import CourseList from '../components/CourseList'
 import Paragraph from '../components/Paragraph'
 import ArticleList from '../components/ArticleList'
+import OtherCourse from '../components/OtherCourse'
 const CourseItem = () => {
   
   return (
     <>
-    <ScrollView style={{padding:30,backgroundColor:'#9F2B68	'}}>
+    <ScrollView style={{padding:30,backgroundColor:'#121212'}}>
    <WelcomeHeader/>
    <Slider/>
    {/* <Paragraph/> */}
    <VideoCourse/>
-   <CourseList/>
+   <OtherCourse/>
+   {/* <CourseList/> */}
     </ScrollView>
     </>
   )

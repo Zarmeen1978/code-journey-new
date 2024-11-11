@@ -26,7 +26,7 @@ const _layout = () => {
       options={{
         headerShown:false
       }} />
-      <Stack.Screen name='UrduCourse'
+      <Stack.Screen name='CourseList'
       options={{
         headerShown:false
       }} />

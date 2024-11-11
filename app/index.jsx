@@ -27,7 +27,7 @@ export default function App(){
   return (
     <SafeAreaView style={styles.container}>
       <Image  style={{width:'240px',height:'160px'}} source={require('../app/assets/mimo.png')}/>
-      <Text style={styles.heading}> <p>CODE JOURNEY</p></Text>
+      <Text style={styles.heading}>CODE JOURNEY</Text>
      {/* <Text style={styles.heading}><p>خوش آمدید</p></Text>  */}
     <Button
       title="Start Your Journey"
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     display:'flex',
     flex:1,
     alignItems:'center',
+    gap:45,
     justifyContent:'center',
     backgroundColor:'#4B0082'
   },

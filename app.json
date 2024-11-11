@@ -5,7 +5,7 @@
     "scheme": "myapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/images/icon.png",
+    "icon": "./app/assets/aa.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./app/assets/mimo.png",

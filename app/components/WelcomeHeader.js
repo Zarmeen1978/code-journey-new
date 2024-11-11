@@ -12,7 +12,7 @@ const WelcomeHeader = () => {
     <View style
     ={styles.container}>
       <View>
-        <Text>Hello</Text>
+        <Text style={{color:'white'}}>Hello</Text>
         <Text style={{fontSize:20,fontWeight:'bold',color:'#C36FDE'}}>Ahmad</Text>
         {/* <Text>{userData?.name}</Text> */}
       </View>

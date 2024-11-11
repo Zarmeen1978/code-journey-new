@@ -2,11 +2,11 @@ import { FlatList, Image, StyleSheet, Text, TurboModuleRegistry, View } from 're
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../shared/GlobalApi'
 import {Link} from 'expo-router'
-const VideoCourse = () => {
+const OtherCourse = () => {
   const [videoList,setVideoList]=useState([])
   useEffect(()=>{
     getVideoCourse();
-  },[])
+  })
   const getVideoCourse = async () => {
     try {
       const resp = (await GlobalApi.getVideoCourse()).data;
@@ -29,14 +29,14 @@ const VideoCourse = () => {
   return (
     <View style={{marginTop:15}}>
       <Text style={{color:'white',
-        fontSize:20,fontWeight:'bold',marginBottom:3}}>Course</Text>
+        fontSize:20,fontWeight:'bold',marginBottom:3}}>Other Course</Text>
       <FlatList
       data={videoList}
      horizontal={true}
       showsHorizontalScrollIndicator={false}
       renderItem={({item})=>(
         <View>
-          <Link href='/CourseList'>
+          {/* <Link href='/UrduCourse'> */}
           <Image
           source={{uri:item.image}}
           style={{width:200,height:120, marginRight:8,marginTop:12,
@@ -44,7 +44,7 @@ const VideoCourse = () => {
           }}
           
           />
-          </Link>
+          {/* </Link> */}
           </View>
       )}
       />
@@ -52,6 +52,6 @@ const VideoCourse = () => {
   )
 }
 
-export default VideoCourse
+export default OtherCourse
 
-const styles = StyleSheet.create({})
+

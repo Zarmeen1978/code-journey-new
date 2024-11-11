@@ -45,7 +45,7 @@ export default function Slider() {
                         <Image 
                             source={{ uri: item.image }} 
                             style={{ 
-                                width: Dimensions.get('screen').width * 0.87, 
+                                width: Dimensions.get('screen').width * 0.83, 
                                 height: 150, 
                                 borderRadius: 10, 
                                 marginRight: 15 
