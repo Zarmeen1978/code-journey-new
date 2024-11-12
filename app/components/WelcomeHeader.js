@@ -17,7 +17,7 @@ const WelcomeHeader = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Helladwdo</Text>
+        <Text  style={{ color: "#C36FDE" }}>Hello</Text>
         <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C36FDE" }}>
           {user?.username || "User"} {/* Display username from context */}
         </Text>
