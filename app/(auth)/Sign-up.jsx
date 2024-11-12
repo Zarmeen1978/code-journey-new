@@ -1,5 +1,5 @@
 import { Alert, Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../components/FormField";
 import Button from "../components/Button";
@@ -8,6 +8,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import GlobalApi from "../shared/GlobalApi";
 import { createUser } from "../../lib/appwrite";
 import { useNavigation } from "@react-navigation/native";
+import AppContext from "../context/AppContext";
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -15,8 +16,10 @@ const SignUp = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
+    username: "",
   });
   // const [isSubmitting, setIsSubmitting] = useState(false)
+  const { user, setUser } = useContext(AppContext);
 
   // Update submit function to handle API call
   const submit = async () => {
@@ -30,6 +33,8 @@ const SignUp = () => {
 
       if (response.ok) {
         Alert.alert("Success", "User registered successfully");
+        const { jwt, user } = response.data;
+        setUser({ jwt, username: user.username });
         navigation.navigate("InfoOneScreen"); // Navigate to InfoScreen
       } else {
         Alert.alert("Error", response.data?.message || "Registration failed");
@@ -81,18 +86,6 @@ const SignUp = () => {
           />
           <FormField
             style={styles.mmr}
-            title="Email"
-            value={form.email}
-            handleChangeText={(e) =>
-              setForm({
-                ...form,
-                email: e,
-              })
-            }
-            keyboardType="email-address"
-          />
-          <FormField
-            style={styles.mmr}
             title="Password"
             value={form.password}
             handleChangeText={(e) =>
@@ -135,12 +128,6 @@ const SignUp = () => {
           >
             <Text style={styles.btnText}>Sign In</Text>
           </TouchableOpacity> */}
-            <View style={styles.secondSection}>
-              <Text style={{ color: "#ccc", fontSize: 16 }}>
-                Don't have an account
-              </Text>
-              <Text>Sign up</Text>
-            </View>
           </View>
         </View>
       </ScrollView>
