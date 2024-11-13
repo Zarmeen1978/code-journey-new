@@ -8,7 +8,11 @@ const api = create({
   
   const getSlider=()=>api.get('/sliders?populate=*');
   const getVideoCourse=()=>api.get('vide-courses?populate=*');
-  const getCourseList=()=>api.get('courses?populate=*');
+  const getCourseList=()=>api.get('courses?populate=*&locale=ur-PK');
+  const getCourseUrduList=()=>api.get('courses?populate=*&locale=ur-PK');
+  const getCourseEnglishList=()=>api.get('courses?populate=*&locale=en')
+  //http://localhost:1337/api/courses?populate=*&locale=en
+  //http://localhost:1337/api/courses?populate=*&locale=ur-PK
   //const getInformation=()=>api.get('details?populate=*');
   const getArticle=()=>api.get('articles?populate=*locale=ur');
   //const getCourseList=(type)=>api.get('course-list?filters[type][$eq]='+type+'&populate=*')
@@ -17,7 +21,7 @@ const api = create({
     getSlider,
     getVideoCourse,
     getCourseList,
-    //getInformation,
-    getArticle
+    getCourseEnglishList,
+    getCourseUrduList
   }
   //vide-courses?populate=*

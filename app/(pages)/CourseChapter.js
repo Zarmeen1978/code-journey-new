@@ -33,9 +33,9 @@ export default function CourseChapter() {
 
     return (
         <View style={{ padding: 20, paddingTop: 50, flex: 1 }}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            {/* <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Ionicons name="arrow-back-sharp" size={24} color="black" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             {/* <ProgressBar progress={progress} /> */}
             <FlatList
                 data={chapter}

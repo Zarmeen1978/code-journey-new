@@ -32,7 +32,7 @@ export default function CourseDetails() {
                     
                     setUserProgress(result);
                 }
-            });
+            });[]
     };
     
    
@@ -40,9 +40,9 @@ export default function CourseDetails() {
  
   return (
     <View style={{padding:20,paddingTop:50}}>
-        <TouchableOpacity onPress={()=>navigation.goBack()}>
+        {/* <TouchableOpacity onPress={()=>navigation.goBack()}>
         <Ionicons name="arrow-back-sharp" size={24} color="black" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View>
             <Text style={{fontSize:20,
             fontWeight:'bold'}}>{course.name}</Text>
