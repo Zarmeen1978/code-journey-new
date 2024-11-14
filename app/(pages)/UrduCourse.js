@@ -1,54 +1,50 @@
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
-import { View, Image, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-
-const courseContent = [
-  { id: '01', title: 'تعارف' },
-  { id: '02', title: 'متغیرات' },
-  { id: '03', title: 'ڈیٹا کی اقسام' },
-  { id: '04', title: 'نمبرز' },
-  { id: '05', title: 'کاسٹنگ' },
-];
-
-const CourseItem = ({ id, title }) => (
-  <View style={styles.courseItem}>
-    <Text style={styles.courseNumber}>{id}</Text>
-    <Text style={styles.fontUrduONe}>{title}</Text>
-    <Ionicons name="play-circle" size={24} style={{position: 'absolute', right: 10}} color='blue' />
-
-    {/* <Text style={styles.asterisk}>*</Text> */}
-  </View>
-);
-
 const UrduCourse = () => {
+  const router = useRouter();
+  const navigation = useNavigation();
+  const navigateToCourse = (language) => {
+    if (language === 'english') {
+      router.push('/CourseLists'); // Navigate to English course list
+    } else {
+      router.push('/CourseList'); // Navigate to Urdu course list
+    }
+  };
+
   return (
-    <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={() => console.log("میں دبایا گیا ہوں")}>
-        <Ionicons name="arrow-back" size={24} color="black" />
-      </TouchableOpacity>
-      <Text style={[styles.title,styles.fontUrdu]}>سی پلس پلس کی بنیادی باتیں</Text>
-      {/* <Text style={[styles.title, styles.fontUrdu]}>C++ کی بنیادیات</Text> */}
-      <Text style={[styles.subtitle,styles.fontUrdu]}>کوڈ جرنی کے ذریعے</Text>
+    <>
+    <View>
+     <TouchableOpacity
+     style={{marginTop:25,
+            marginLeft:25,
+            marginBottom:25
 
-      {/* <Text style={[styles.subtitle, styles.fontUrdu]}>بذریعہ TubeCoder</Text> */}
-      <Image
-        source={require('../assets/C.png')}
-        resizeMethod='contain'
-        style={styles.image}
-      />
-      <Text style={[styles.headingStyle, styles.fontUrdu]}>کورس کے بارے میں</Text>
-      <Text style={[styles.description,styles.fontUrdu]}>
-        سی پلس پلس ایک عام مقصد کے لیے استعمال ہونے والی پروگرامنگ زبان ہے جو ویب ڈویلپمنٹ، ڈیٹا تجزیہ، اور گیم ڈویلپمنٹ سمیت کئی مختلف کاموں کے لیے استعمال ہوتی ہے۔
-      </Text>
-
-      {/* <Text style={[styles.content, styles.fontUrdu]}>
-        C++ ایک عمومی مقصد کی پروگرامنگ زبان ہے جو ویب ترقی، ڈیٹا تجزیہ، اور گیم ترقی سمیت کئی کاموں کے لئے استعمال ہوتی ہے۔
-      </Text> */}
-      <Text style={[styles.headingStyle, styles.fontUrdu]}>کورس کا مواد</Text>
-      {courseContent.map(item => (
-        <CourseItem key={item.id} id={item.id} title={item.title} />
-      ))}
-    </ScrollView>
+     }}
+     onPress={() => navigation.goBack()}>
+                <Ionicons name="arrow-back-sharp" size={24} color="black" />
+            </TouchableOpacity>
+    <View style={styles.container}>
+      <Text style={styles.heading}>Select Language</Text>
+      <View style={styles.languageButtonsContainer}>
+        <TouchableOpacity
+          style={[styles.button, styles.englishButton]}
+          onPress={() => navigateToCourse('english')}
+        >
+          <Text style={styles.buttonText}>English</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.urduButton]}
+          onPress={() => navigateToCourse('urdu')}
+        >
+          <Text style={styles.buttonText}>Urdu</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+    </View>
+    </>
   );
 };
 
@@ -56,61 +52,36 @@ export default UrduCourse;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 12,
-    paddingLeft: 20,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding:35,
   },
-  title: {
-    fontSize: 25,
+  heading: {
+    fontSize: 24,
     fontWeight: 'bold',
-    marginRight:20
+    marginBottom: 20,
   },
-  subtitle: {
-    color: '#454545',
-    marginRight: 12,
-    marginRight:20
-  },
-  description: {
-    textAlign: 'justify',
-    marginRight: 20,
-  },
-  headingStyle: {
-    marginTop: 10,
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginRight: 10,
-    marginBottom: 10,
-  },
-  content: {
-    textAlign: 'justify',
-   // marginRight: 30,
-  },
-  courseItem: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
+  languageButtonsContainer: {
     flexDirection: 'row',
-    marginTop: 12,
-   // backgroundColor: 'lightblue',
-   backgroundColor:'#ffffff',
-    borderRadius: 9,
-    padding: 6,
-    width: '93%',
+    marginVertical: 15,
   },
-  image: {
-    height: 150,
-    width: 340,
-    marginTop: 10,
-    borderRadius: 10,
+  button: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginHorizontal: 10,
   },
-  courseNumber: {
-    color: '#ccc',
-    fontSize: 20,
+  englishButton: {
+    backgroundColor: '#4CAF50',
   },
-  fontUrdu: {
-  // fontWeight:'bold',
-    fontFamily: 'Noto Nastaliq Urdu', // Replace with your desired Urdu font
+  urduButton: {
+    backgroundColor: '#2196F3',
   },
-  fontUrduONe:{
-      fontWeight:'bold',
-     fontFamily: 'Noto Nastaliq Urdu',
-  }
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 });
+
+

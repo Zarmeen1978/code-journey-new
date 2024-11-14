@@ -15,7 +15,10 @@ const loginUser = (email, password) => {
 };
 const getSlider = () => api.get("/sliders?populate=*");
 const getVideoCourse = () => api.get("vide-courses?populate=*");
-const getCourseList = () => api.get("courses?populate=*");
+const getCourseList = () => api.get("courses?populate=*&locale=ur-PK");
+const getCourseUrduList=()=>api.get('courses?populate=*&locale=ur-PK');
+  const getCourseEnglishList=()=>api.get('courses?populate=*&locale=en')
+
 //const getInformation=()=>api.get('details?populate=*');
 const getArticle = () => api.get("articles?populate=*locale=ur");
 //const getCourseList=(type)=>api.get('course-list?filters[type][$eq]='+type+'&populate=*')
@@ -28,5 +31,7 @@ export default {
   registerUser,
   getArticle,
   loginUser,
+  getCourseEnglishList,
+  getCourseUrduList,
 };
 //vide-courses?populate=*

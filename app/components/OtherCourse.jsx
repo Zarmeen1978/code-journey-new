@@ -1,29 +1,21 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TurboModuleRegistry,
-  View,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import GlobalApi from "../shared/GlobalApi";
-import { Link } from "expo-router";
+import { FlatList, Image, StyleSheet, Text, TurboModuleRegistry, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import GlobalApi from '../shared/GlobalApi'
+import {Link} from 'expo-router'
 const OtherCourse = () => {
-  const [videoList, setVideoList] = useState([]);
-  useEffect(() => {
+  const [videoList,setVideoList]=useState([])
+  useEffect(()=>{
     getVideoCourse();
-  }, []);
+  },[])
   const getVideoCourse = async () => {
     try {
       const resp = (await GlobalApi.getVideoCourse()).data;
-      if (resp && resp.data) {
-        // Check if resp.data is not null or undefined
+      if (resp && resp.data) {  // Check if resp.data is not null or undefined
         const result = resp.data.map((item) => ({
           id: item.id,
           name: item.attributes.name,
           des: item.attributes.description,
-          image: item.attributes.videoUrl.data.attributes.url,
+          image: item.attributes.videoUrl.data.attributes.url
         }));
         setVideoList(result);
       } else {
@@ -33,42 +25,33 @@ const OtherCourse = () => {
       console.error("Error fetching video courses:", error);
     }
   };
-
+  
   return (
-    <View style={{ marginTop: 15 }}>
-      <Text
-        style={{
-          color: "white",
-          fontSize: 20,
-          fontWeight: "bold",
-          marginBottom: 3,
-        }}
-      >
-        Other Course
-      </Text>
+    <View style={{marginTop:15}}>
+      <Text style={{color:'black',
+        fontSize:20,fontWeight:'bold',marginBottom:3}}>Other Course</Text>
       <FlatList
-        data={videoList}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <View>
-            {/* <Link href='/UrduCourse'> */}
-            <Image
-              source={{ uri: item.image }}
-              style={{
-                width: 200,
-                height: 120,
-                marginRight: 8,
-                marginTop: 12,
-                borderRadius: 7,
-              }}
-            />
-            {/* </Link> */}
+      data={videoList}
+     horizontal={true}
+      showsHorizontalScrollIndicator={false}
+      renderItem={({item})=>(
+        <View>
+          {/* <Link href='/UrduCourse'> */}
+          <Image
+          source={{uri:item.image}}
+          style={{width:200,height:120, marginRight:8,marginTop:12,
+            borderRadius:7
+          }}
+          
+          />
+          {/* </Link> */}
           </View>
-        )}
+      )}
       />
     </View>
-  );
-};
+  )
+}
 
-export default OtherCourse;
+export default OtherCourse
+
+
