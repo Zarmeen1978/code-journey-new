@@ -18,6 +18,10 @@ const getVideoCourse = () => api.get("vide-courses?populate=*");
 const getCourseList = () => api.get("courses?populate=*");
 //const getInformation=()=>api.get('details?populate=*');
 const getArticle = () => api.get("articles?populate=*locale=ur");
+const getCourseUrduList=()=>api.get('courses?populate=*&locale=ur-PK');
+const getCourseEnglishList=()=>api.get('courses?populate=*&locale=en')
+const getUserDetails = (token) =>
+  api.get("/users/me", {}, { headers: { Authorization: `Bearer ${token}` } });
 //const getCourseList=(type)=>api.get('course-list?filters[type][$eq]='+type+'&populate=*')
 //sliders?populate=*
 export default {
@@ -28,5 +32,8 @@ export default {
   registerUser,
   getArticle,
   loginUser,
+  getUserDetails,
+  getCourseUrduList,
+  getCourseEnglishList
 };
 //vide-courses?populate=*

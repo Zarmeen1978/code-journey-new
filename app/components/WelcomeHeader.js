@@ -17,7 +17,7 @@ const WelcomeHeader = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Text  style={{ color: "#C36FDE" }}>Hello</Text>
+        <Text style={{ color: "#C36FDE" }}>Hello</Text>
         <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C36FDE" }}>
           {user?.username || "User"} {/* Display username from context */}
         </Text>
@@ -48,7 +48,7 @@ const WelcomeHeader = () => {
         </Link>
       </TouchableOpacity> */}
         <TouchableOpacity onPress={() => onPress()}>
-          <Text style={{ color: "#C36FDE" }}>Create Profile!</Text>
+          <Text style={{ color: "#C36FDE" }}>View Profile!</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,11 +12,46 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
+import { useRouter } from "expo-router";
+import GlobalApi from "../shared/GlobalApi";
 
 const Profile = ({}) => {
+  const router = useRouter();
   const navigation = useNavigation();
-  const { user } = useContext(AppContext);
+  const { user, jwt, setUser } = useContext(AppContext);
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
+
   console.log(user, "Motorrrrrrrrrrr");
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      console.log("JWT in Profile:", user.jwt);
+      if (user.jwt) {
+        try {
+          const response = await GlobalApi.getUserDetails(user.jwt);
+          if (response.ok) {
+            setUserData(response.data);
+          } else {
+            console.log("Failed to fetch user details:", response.problem);
+          }
+        } catch (error) {
+          console.log("Error fetching user details:", error);
+        } finally {
+          setLoading(false); // Set loading to false once data is fetched
+        }
+      }
+    };
+
+    fetchUserDetails();
+  }, [jwt]);
+
+  const handleLogout = () => {
+    setUser(null); // Set the user to null on logout
+    router.replace("/"); // Navigate to the "Login" screen (replace with your route)
+  };
+
+  if (!userData) return <Text>Loading...</Text>; // Render a loading state while data is being fetched
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +66,7 @@ const Profile = ({}) => {
       {/* Profile Header */}
       <View style={styles.header}>
         <Image source={require("../assets/coding.jpg")} style={styles.avatar} />
-        <Text style={styles.name}>Ahmad Mudassir</Text>
+        <Text style={styles.name}>{userData.username}</Text>
       </View>
 
       {/* About Section */}
@@ -39,28 +74,27 @@ const Profile = ({}) => {
       <View style={styles.infoContainer}>
         <View style={styles.infoBox}>
           <Text style={styles.infoLabel}>Name:</Text>
-          <Text style={styles.infoText}>Ahmad Mudassir</Text>
+          <Text style={styles.infoText}>{userData.username}</Text>
         </View>
         <View style={styles.infoBox}>
           <Text style={styles.infoLabel}>Email:</Text>
-          <Text style={styles.infoText}>ahmad786@gmail.com</Text>
+          <Text style={styles.infoText}>{userData.email}</Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.infoLabel}>Completed Courses:</Text>
-          <Text style={styles.infoText}>None</Text>
+          <Text style={styles.infoLabel}>Rank</Text>
+          <Text style={styles.infoText}>{userData.rank}</Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.infoLabel}>Progress:</Text>
-          <Text style={styles.infoText}>0%</Text>
+          <Text style={styles.infoLabel}>Experience:</Text>
+          <Text style={styles.infoText}>{userData.experience} exp</Text>
         </View>
       </View>
 
       {/* Logout Button */}
       <Button
-        // color='#C36FDE'
-        color="#5C36A6"
         title="Log Out"
-        onPress={() => alert("Logged out")}
+        color="#d9534f"
+        onPress={handleLogout} // Trigger the logout function
       />
     </SafeAreaView>
   );

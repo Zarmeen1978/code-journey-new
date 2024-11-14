@@ -1,100 +1,122 @@
-import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useState, useContext } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import FormField from '../components/FormField';
-import Button from '../components/Button';
-import { Link } from 'expo-router';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useRouter } from 'expo-router';
-import GlobalApi from '../shared/GlobalApi';
-import AppContext from '../context/AppContext';
-
+import React, { useState, useContext, useRef } from "react";
+import {
+  Alert,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Pressable,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
+import GlobalApi from "../shared/GlobalApi";
+import AppContext from "../context/AppContext";
 
 const SignIn = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  const { user, setUser } = useContext(AppContext);
+  const { setUser } = useContext(AppContext);
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
 
   const submit = async () => {
     if (!form.email || !form.password) {
-      Alert.alert('Error', 'Please fill in all the fields');
+      Alert.alert("Error", "Please fill in all the fields");
       return;
     }
 
     setIsSubmitting(true);
     try {
       const response = await GlobalApi.loginUser(form.email, form.password);
-
-      
       if (response.ok && response.data) {
         const { jwt, user } = response.data;
-        console.log('I CAMEEEEEEE');
-        
         setUser({ jwt, username: user.username });
-        console.log('User data set:', { jwt, username: user.username });
-
-        Alert.alert('Success', 'User signed in successfully');
-        
-        router.replace('/CourseItem'); // Replace with the actual route
+        Alert.alert("Success", "User signed in successfully");
+        router.replace("/CourseItem"); // Replace with the actual route
       } else {
-        Alert.alert('Error', response.data?.message || 'Login failed');
+        Alert.alert("Error", response.data?.message || "Login failed");
       }
     } catch (error) {
       console.error("Login error:", error);
-      Alert.alert('Error', error.message || 'An unexpected error occurred');
+      Alert.alert("Error", error.message || "An unexpected error occurred");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const onPressForgotPassword = () => {
+    Alert.alert("Forgot Password", "Forgot password functionality goes here.");
+  };
+
+  const onPressSignUp = () => {
+    router.push("/Sign-up");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.firstSection}>
-          <View style={styles.imageContainer}>
-            <Image 
-              source={require('../assets/mimo.png')}
-              resizeMode="contain" 
-              style={styles.sizeImage} 
-            />
-          </View>
-          <Text style={styles.textStyle}>Log in</Text>
-          
-          <FormField 
-            style={styles.mmr}
-            title="Email"
-            value={form.email}
-            handleChangeText={(e) => setForm({ ...form, email: e })} 
-            keyboardType="email-address" 
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require("../assets/mimo.png")}
+            resizeMode="contain"
+            style={styles.sizeImage}
           />
-          
-          <FormField 
-            style={styles.mmr}
-            title="Password"
-            value={form.password}
-            handleChangeText={(e) => setForm({ ...form, password: e })} 
-            secureTextEntry
-          />
-          
-          <TouchableOpacity 
-            style={styles.btn}
-            onPress={submit}  
-            disabled={isSubmitting}
-          >
-            <Text style={styles.btnText}>Sign In</Text>
-          </TouchableOpacity>
-          
-          <View style={styles.secondSection}>
-            <Text style={{ color: '#ccc', fontSize: 16 }}>Don't have an account?</Text>
-            <Link 
-              href="/Sign-up"
-              style={styles.link}
-            >
-              Sign Up
-            </Link>
-          </View>
         </View>
+        <Text style={styles.title}>LOG IN</Text>
+
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Email</Text>
+            <Pressable
+              onPress={() => emailInputRef.current.focus()}
+              style={styles.inputView}
+            >
+              <TextInput
+                ref={emailInputRef}
+                style={styles.inputText}
+                placeholder="Enter your email"
+                placeholderTextColor="#003f5c"
+                keyboardType="email-address"
+                value={form.email}
+                onChangeText={(e) => setForm({ ...form, email: e })}
+              />
+            </Pressable>
+
+            <Text style={styles.label}>Password</Text>
+            <Pressable
+              onPress={() => passwordInputRef.current.focus()}
+              style={styles.inputView}
+            >
+              <TextInput
+                ref={passwordInputRef}
+                style={styles.inputText}
+                placeholder="Enter your password"
+                placeholderTextColor="#003f5c"
+                secureTextEntry
+                value={form.password}
+                onChangeText={(e) => setForm({ ...form, password: e })}
+              />
+            </Pressable>
+          </View>
+        </TouchableWithoutFeedback>
+
+        <TouchableOpacity
+          onPress={submit}
+          style={styles.loginBtn}
+          disabled={isSubmitting}
+        >
+          <Text style={styles.loginText}>LOGIN</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={onPressSignUp}>
+          <Text style={styles.forgotAndSignUpText}>Sign Up</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -104,65 +126,81 @@ export default SignIn;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#4B0082',
-    height: '100%',
-    paddingTop: 12,
+    flex: 1,
+    backgroundColor: "#4B0082",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
   },
-  firstSection: {
-    width: '100%',
-    justifyContent: 'space-between',
-    height: '100%',
-    paddingTop: 4,
-    marginBottom: 6,
+  scrollViewContent: {
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 20,
+    width: "100%",
   },
   imageContainer: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mmr: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    height: 39,
-    width: '100%',
-    paddingLeft: 13,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
   },
   sizeImage: {
-    width: 350,
-    height: 200,
+    width: 250,
+    height: 150,
   },
-  textStyle: {
-    color: '#fff',
+  title: {
+    color: "#fff",
     fontSize: 35,
-    marginTop: 10,
-    textAlign: 'center',
+    fontWeight: "medium",
+    marginBottom: 40,
+    textAlign: "center",
   },
-  btn: {
-    width: '78%',
-    marginTop: 35,
-    marginLeft: 20,
-    alignItems: 'center',
-    backgroundColor: '#C36FDE',
-    fontSize: 20,
-    borderRadius: 20,
-    paddingVertical: 20,
-    paddingHorizontal: 44,
+  inputContainer: {
+    width: "100%",
+    marginBottom: 20,
   },
-  btnText: {
-    color: '#F2F0F4',
-    fontSize: 20,
-  },
-  secondSection: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    fontWeight: '300',
-    color: '#ccc',
-    marginTop: 18,
-  },
-  link: {
-    marginLeft: 3,
-    color: '#C36FDE',
-    textDecorationLine: 'underline',
+  label: {
+    color: "#fff",
     fontSize: 16,
+    fontWeight: "600",
+    marginBottom: 5,
+    paddingLeft: 5,
+  },
+  inputView: {
+    backgroundColor: "#fff",
+    borderRadius: 25,
+    height: 50,
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    width: "100%",
+  },
+  inputText: {
+    backgroundColor: "transparent",
+    borderWidth: 0,
+    outlineStyle: "none", // Attempt to disable outline directly
+    outlineWidth: 0,
+    outlineColor: "transparent",
+  },
+  forgotAndSignUpText: {
+    color: "#fff",
+    fontSize: 12,
+    marginTop: 10,
+    textAlign: "center",
+  },
+  loginBtn: {
+    width: "90%",
+    backgroundColor: "#C36FDE",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  loginText: {
+    color: "#F2F0F4",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
