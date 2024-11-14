@@ -19,12 +19,11 @@ const CourseItem = () => {
   
   return (
     <>
-    <ScrollView style={{padding:30,backgroundColor:'#121212'}}>
+    <ScrollView style={{padding:30}}>
    <WelcomeHeader/>
    <Slider/>
-   {/* <Paragraph/> */}
    <VideoCourse/>
-   <OtherCourse/>
+   {/* <OtherCourse/> */}
    {/* <CourseList/> */}
     </ScrollView>
     </>
