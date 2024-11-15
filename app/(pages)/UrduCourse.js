@@ -19,7 +19,7 @@ const UrduCourse = () => {
       <View>
         <TouchableOpacity
           style={{ marginTop: 25, marginLeft: 25, marginBottom: 25 }}
-          onPress={() => navigation.goBack()}
+          onPress={() => router.push("/CourseItem")}
         >
           <Ionicons name="arrow-back-sharp" size={24} color="black" />
         </TouchableOpacity>

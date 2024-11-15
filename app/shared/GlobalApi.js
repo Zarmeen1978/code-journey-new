@@ -39,7 +39,7 @@ export default {
   registerUser,
   getArticle,
   loginUser,
-  getUserDetails,
+  // getUserDetails,
   getCourseUrduList,
   getPythonUrduCourse,
   getPythonEnglishCourse,

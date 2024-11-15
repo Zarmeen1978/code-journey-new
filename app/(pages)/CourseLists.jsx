@@ -26,7 +26,7 @@ export default function CourseLists() {
 
   const getCourseList = async () => {
     try {
-      debugger;
+  
       let resp;
       if (currentCourse === "C Course") {
         resp = (await GlobalApi.getJsEnglishCourse()).data;
