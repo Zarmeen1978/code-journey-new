@@ -16,8 +16,16 @@ const loginUser = (email, password) => {
 const getSlider = () => api.get("/sliders?populate=*");
 const getVideoCourse = () => api.get("vide-courses?populate=*");
 const getCourseList = () => api.get("courses?populate=*&locale=ur-PK");
-const getCourseUrduList=()=>api.get('courses?populate=*&locale=ur-PK');
-  const getCourseEnglishList=()=>api.get('courses?populate=*&locale=en')
+const getCourseUrduList = () => api.get("courses?populate=*&locale=ur-PK");
+const getCourseEnglishList = () => api.get("courses?populate=*&locale=en");
+const getPythonUrduCourse = () =>
+  api.get("pythoncourses?populate=*&locale=ur-PK");
+const getPythonEnglishCourse = () =>
+  api.get("pythoncourses?populate=*&locale=en");
+const getJsUrduCourse = () =>
+  api.get("javascriptcourses?populate=*&locale=ur-PK");
+const getJsEnglishCourse = () =>
+  api.get("javascriptcourses?populate=*&locale=en");
 
 //const getInformation=()=>api.get('details?populate=*');
 const getArticle = () => api.get("articles?populate=*locale=ur");
@@ -33,5 +41,9 @@ export default {
   loginUser,
   getCourseEnglishList,
   getCourseUrduList,
+  getPythonUrduCourse,
+  getPythonEnglishCourse,
+  getJsUrduCourse,
+  getJsEnglishCourse,
 };
 //vide-courses?populate=*
