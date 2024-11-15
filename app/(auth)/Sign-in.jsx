@@ -36,7 +36,13 @@ const SignIn = () => {
       const response = await GlobalApi.loginUser(form.email, form.password);
       if (response.ok && response.data) {
         const { jwt, user } = response.data;
-        setUser({ jwt, username: user.username });
+        setUser({
+          jwt,
+          username: user.username,
+          id: user.id,
+          experience: user.experience,
+          rank: user.rank
+        });
         Alert.alert("Success", "User signed in successfully");
         router.replace("/CourseItem"); // Replace with the actual route
       } else {

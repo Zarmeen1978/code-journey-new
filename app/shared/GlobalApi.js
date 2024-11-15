@@ -29,21 +29,32 @@ const getJsEnglishCourse = () =>
 
 //const getInformation=()=>api.get('details?populate=*');
 const getArticle = () => api.get("articles?populate=*locale=ur");
+const getUserDetails = (token) =>
+  api.get("/users/me", {}, { headers: { Authorization: `Bearer ${token}` } });
+
+const updateUserExperience = (userId, experience, rank, token) =>
+  api.put(
+    `/users/${userId}`, // Include userId in the endpoint
+    { experience, rank }, // Pass experience in the body
+    { headers: { Authorization: `Bearer ${token}` } } // Set the JWT token in headers
+  );
 //const getCourseList=(type)=>api.get('course-list?filters[type][$eq]='+type+'&populate=*')
 //sliders?populate=*
 export default {
   getSlider,
   getVideoCourse,
   getCourseList,
+  getCourseEnglishList,
   //getInformation,
   registerUser,
   getArticle,
   loginUser,
-  // getUserDetails,
+  getUserDetails,
   getCourseUrduList,
   getPythonUrduCourse,
   getPythonEnglishCourse,
   getJsUrduCourse,
   getJsEnglishCourse,
+  updateUserExperience,
 };
 //vide-courses?populate=*

@@ -1,27 +1,78 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React, {
+  useContext,
+  useEffect,
+  useFocusEffect,
+  useCallback,
+  useState,
+} from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import AppContext from "../context/AppContext";
+import GlobalApi from "../shared/GlobalApi";
+
 const CongratulationScreen = () => {
-  
   const navigation = useNavigation();
+  const { user, setUser } = useContext(AppContext);
+  const [hasUpdated, setHasUpdated] = useState(false); // New flag to control effect
+
+  useEffect(() => {
+    const updateExperience = async () => {
+      // Check if the update has already occurred to avoid repeated runs
+      if (hasUpdated) return;
+
+      // Parse experience, add 100 points
+      const updatedExperience = (
+        parseInt(user.experience, 10) + 100
+      ).toString();
+
+      // Determine new rank based on updated experience points
+      let newRank = user.rank;
+      if (user.rank === "Beginner" && updatedExperience > 1000) {
+        newRank = "Intermediate";
+      } else if (user.rank === "Intermediate" && updatedExperience > 3000) {
+        newRank = "Expert";
+      }
+
+      // Update experience and rank on the server
+      const response = await GlobalApi.updateUserExperience(
+        user.id,
+        updatedExperience,
+        newRank,
+        user.jwt
+      );
+
+      if (!response.ok) {
+        console.error("Failed to update experience or rank:", response.problem);
+      } else {
+        // Update user context with new experience and rank
+        setUser({
+          ...user,
+          experience: updatedExperience,
+          rank: newRank,
+        });
+        console.log("User experience and rank updated successfully");
+        setHasUpdated(true); // Set flag to prevent re-running
+      }
+    };
+
+    updateExperience();
+  }, [hasUpdated, user, setUser]);
+
   return (
-    <>
     <View style={styles.container}>
-      <View style={{ right:150, bottom:34
-      }}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Ionicons name="arrow-back-sharp" size={24} color="black" />
-            </TouchableOpacity>
+      <View style={{ right: 150, bottom: 34 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back-sharp" size={24} color="black" />
+        </TouchableOpacity>
       </View>
       <Text style={styles.congratulationText}>Congratulations!</Text>
-      <Image
-        source={require('../assets/win.jpg')} // Replace with your image URL
-        style={styles.image}
-      />
-      <Text style={styles.messageText}>You have successfully completed the task!</Text>
+      <Image source={require("../assets/win.jpg")} style={styles.image} />
+      <Text style={styles.messageText}>
+        You have successfully completed the task and gained 100 Experience
+        Points!
+      </Text>
     </View>
-    </>
   );
 };
 
@@ -30,28 +81,27 @@ export default CongratulationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
-    backgroundColor:'#fff'
-    //backgroundColor: '#f8f9fa',
+    backgroundColor: "#fff",
   },
   congratulationText: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#4CAF50', // Green color for congratulation
+    fontWeight: "bold",
+    color: "#4CAF50",
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   image: {
     width: 330,
     height: 330,
     marginBottom: 20,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   messageText: {
     fontSize: 18,
-    color: '#555',
-    textAlign: 'center',
+    color: "#555",
+    textAlign: "center",
   },
 });

@@ -45,7 +45,13 @@ const SignUp = () => {
       if (response.ok) {
         Alert.alert("Success", "User registered successfully");
         const { jwt, user } = response.data;
-        setUser({ jwt, username: user.username });
+        setUser({
+          jwt,
+          username: user.username,
+          id: user.id,
+          experience: user.experience,
+          rank: user.rank,
+        });
         navigation.navigate("InfoOneScreen");
       } else {
         Alert.alert("Error", response.data?.message || "Registration failed");
