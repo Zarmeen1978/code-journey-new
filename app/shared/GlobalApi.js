@@ -15,13 +15,20 @@ const loginUser = (email, password) => {
 };
 const getSlider = () => api.get("/sliders?populate=*");
 const getVideoCourse = () => api.get("vide-courses?populate=*");
-const getCourseList = () => api.get("courses?populate=*");
+const getCourseList = () => api.get("courses?populate=*&locale=ur-PK");
+const getCourseUrduList = () => api.get("courses?populate=*&locale=ur-PK");
+const getCourseEnglishList = () => api.get("courses?populate=*&locale=en");
+const getPythonUrduCourse = () =>
+  api.get("pythoncourses?populate=*&locale=ur-PK");
+const getPythonEnglishCourse = () =>
+  api.get("pythoncourses?populate=*&locale=en");
+const getJsUrduCourse = () =>
+  api.get("javascriptcourses?populate=*&locale=ur-PK");
+const getJsEnglishCourse = () =>
+  api.get("javascriptcourses?populate=*&locale=en");
+
 //const getInformation=()=>api.get('details?populate=*');
 const getArticle = () => api.get("articles?populate=*locale=ur");
-const getCourseUrduList=()=>api.get('courses?populate=*&locale=ur-PK');
-const getCourseEnglishList=()=>api.get('courses?populate=*&locale=en')
-const getUserDetails = (token) =>
-  api.get("/users/me", {}, { headers: { Authorization: `Bearer ${token}` } });
 //const getCourseList=(type)=>api.get('course-list?filters[type][$eq]='+type+'&populate=*')
 //sliders?populate=*
 export default {
@@ -34,6 +41,9 @@ export default {
   loginUser,
   getUserDetails,
   getCourseUrduList,
-  getCourseEnglishList
+  getPythonUrduCourse,
+  getPythonEnglishCourse,
+  getJsUrduCourse,
+  getJsEnglishCourse,
 };
 //vide-courses?populate=*
