@@ -1,32 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Button,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, Image, StyleSheet, Button, ScrollView, TouchableOpacity, SafeAreaView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
 import { useRouter } from "expo-router";
 import GlobalApi from "../shared/GlobalApi";
 
-const Profile = ({}) => {
+const Profile = () => {
   const router = useRouter();
   const navigation = useNavigation();
   const { user, jwt, setUser } = useContext(AppContext);
   const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
-
-  console.log(user, "Motorrrrrrrrrrr");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      console.log("JWT in Profile:", user.jwt);
       if (user.jwt) {
         try {
           const response = await GlobalApi.getUserDetails(user.jwt);
@@ -38,38 +26,31 @@ const Profile = ({}) => {
         } catch (error) {
           console.log("Error fetching user details:", error);
         } finally {
-          setLoading(false); // Set loading to false once data is fetched
+          setLoading(false);
         }
       }
     };
-
     fetchUserDetails();
   }, [jwt]);
 
   const handleLogout = () => {
-    setUser(null); // Set the user to null on logout
-    router.replace("/"); // Navigate to the "Login" screen (replace with your route)
+    setUser(null);
+    router.replace("/"); // Navigate to the "Login" screen
   };
 
-  if (!userData) return <Text>Loading...</Text>; // Render a loading state while data is being fetched
+  if (loading) return <Text>Loading...</Text>;
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Back Button */}
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={styles.backButton}
-      >
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Ionicons name="arrow-back-sharp" size={24} color="black" />
       </TouchableOpacity>
 
-      {/* Profile Header */}
       <View style={styles.header}>
         <Image source={require("../assets/coding.jpg")} style={styles.avatar} />
         <Text style={styles.name}>{userData.username}</Text>
       </View>
 
-      {/* About Section */}
       <Text style={styles.sectionTitle}>About</Text>
       <View style={styles.infoContainer}>
         <View style={styles.infoBox}>
@@ -81,7 +62,7 @@ const Profile = ({}) => {
           <Text style={styles.infoText}>{userData.email}</Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.infoLabel}>Rank</Text>
+          <Text style={styles.infoLabel}>Rank:</Text>
           <Text style={styles.infoText}>{userData.rank}</Text>
         </View>
         <View style={styles.infoBox}>
@@ -90,12 +71,7 @@ const Profile = ({}) => {
         </View>
       </View>
 
-      {/* Logout Button */}
-      <Button
-        title="Log Out"
-        color="#d9534f"
-        onPress={handleLogout} // Trigger the logout function
-      />
+      <Button title="Log Out" color="#d9534f" onPress={handleLogout} />
     </SafeAreaView>
   );
 };
@@ -112,19 +88,12 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
   header: {
-    //backgroundColor: '#C36FDE',
     padding: 20,
     alignItems: "center",
     width: "100%",
     height: 200,
     borderBottomLeftRadius: 100,
     borderBottomRightRadius: 100,
-  },
-  headerTitle: {
-    fontSize: 35,
-    fontWeight: "300",
-    color: "#C36FDE",
-    marginBottom: 10,
   },
   avatar: {
     width: 100,
@@ -153,16 +122,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#c7c7c7",
     borderRadius: 12,
     padding: 12,
-    display: "flex",
-    alignItems: "flex-start",
     flexDirection: "row",
-    gap: 23,
     margin: 12,
   },
   infoLabel: {
-    color: "#454545",
     fontWeight: "bold",
-    marginBottom: 5,
+    marginRight: 10,
   },
   infoText: {
     fontSize: 16,

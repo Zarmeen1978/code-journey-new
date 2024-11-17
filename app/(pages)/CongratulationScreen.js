@@ -1,11 +1,5 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import React, {
-  useContext,
-  useEffect,
-  useFocusEffect,
-  useCallback,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AppContext from "../context/AppContext";

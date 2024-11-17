@@ -1,6 +1,6 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import GlobalApi from '../shared/GlobalApi';
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import GlobalApi from "../shared/GlobalApi";
 
 const CourseListEnglish = () => {
   const [videoList, setVideoList] = useState([]);
@@ -21,10 +21,10 @@ const CourseListEnglish = () => {
         }));
         setVideoList(result);
       } else {
-        console.error('No data found in response:', resp);
+        console.error("No data found in response:", resp);
       }
     } catch (error) {
-      console.error('Error fetching video courses:', error);
+      console.error("Error fetching video courses:", error);
     }
   };
 
@@ -54,27 +54,22 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
   courseContainer: {
     marginRight: 16,
     width: 200,
   },
   courseImage: {
-    width: '100%',
+    width: "100%",
     height: 120,
     borderRadius: 8,
     marginBottom: 8,
   },
   courseName: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   courseDescription: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
 });

@@ -1,11 +1,11 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+
 const UrduCourse = () => {
   const router = useRouter();
-  const navigation = useNavigation();
+
   const navigateToCourse = (language) => {
     if (language === "english") {
       router.push("/CourseLists");
@@ -15,37 +15,32 @@ const UrduCourse = () => {
   };
 
   return (
-    <>
-      <View>
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => router.push("/CourseItem")}
+        style={styles.backButton}
+      >
+        <Ionicons name="arrow-back-sharp" size={24} color="black" />
+      </TouchableOpacity>
+
+      <Text style={styles.heading}>Select Language</Text>
+      <View style={styles.languageButtonsContainer}>
         <TouchableOpacity
-          style={{ marginTop: 25, marginLeft: 25, marginBottom: 25 }}
-          onPress={() => router.push("/CourseItem")}
+          style={[styles.button, styles.englishButton]}
+          onPress={() => navigateToCourse("english")}
         >
-          <Ionicons name="arrow-back-sharp" size={24} color="black" />
+          <Text style={styles.buttonText}>English</Text>
         </TouchableOpacity>
-        <View style={styles.container}>
-          <Text style={styles.heading}>Select Language</Text>
-          <View style={styles.languageButtonsContainer}>
-            <TouchableOpacity
-              style={[styles.button, styles.englishButton]}
-              onPress={() => navigateToCourse("english")}
-            >
-              <Text style={styles.buttonText}>English</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, styles.urduButton]}
-              onPress={() => navigateToCourse("urdu")}
-            >
-              <Text style={styles.buttonText}>Urdu</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <TouchableOpacity
+          style={[styles.button, styles.urduButton]}
+          onPress={() => navigateToCourse("urdu")}
+        >
+          <Text style={styles.buttonText}>Urdu</Text>
+        </TouchableOpacity>
       </View>
-    </>
+    </View>
   );
 };
-
-export default UrduCourse;
 
 const styles = StyleSheet.create({
   container: {
@@ -53,6 +48,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 35,
+  },
+  backButton: {
+    position: "absolute",
+    top: 25,
+    left: 25,
   },
   heading: {
     fontSize: 24,
@@ -80,3 +80,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
+export default UrduCourse;

@@ -1,12 +1,14 @@
-import { View, Text } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import GlobalApi from "../shared/GlobalApi";
-import { FlatList } from "react-native";
-import { Image } from "react-native";
-//import Colors from '../Shared/Colors';
-import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ScrollView } from "react-native-web";
 import AppContext from "../context/AppContext";
 
 export default function CourseList() {
@@ -17,14 +19,15 @@ export default function CourseList() {
   const green = "#00FF00"; // Define your color here or use Colors.green
   const white = "#FFFFFF"; // Define your color here or use Colors.white
   const gray = "#454545";
+
   useEffect(() => {
     getCourseList();
-  }, []);
+  }, []); // Only call once on initial load
 
   const getCourseList = async () => {
     let resp;
     if (currentCourse === "C Course") {
-      resp = (await GlobalApi.getCourseList()).data;
+      resp = (await GlobalApi.getCourseUrduList()).data;
     } else if (currentCourse === "Python Course") {
       resp = (await GlobalApi.getPythonUrduCourse()).data;
     } else if (currentCourse === "JS Course") {
@@ -50,6 +53,7 @@ export default function CourseList() {
       courseType: "text",
     });
   };
+
   return (
     <ScrollView style={{ marginTop: 10 }}>
       <Text
@@ -68,8 +72,6 @@ export default function CourseList() {
       <FlatList
         style={{ marginLeft: 25 }}
         data={courseList}
-        //   horizontal={true}
-        //   showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={{

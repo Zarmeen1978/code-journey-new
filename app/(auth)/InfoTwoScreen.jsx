@@ -1,68 +1,57 @@
-import {StyleSheet,View, Text, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
-import { Link } from 'expo-router';
-export default function InfoTwoScreen(){
-    return(
-        <View style={styles.container}>
-            <Image  source={require('./../assets/coding.jpg')}  
-            style={{ marginTop:30,
-              width:400,height:190,
-              resizeMode:'contain'
-            }}
-            />
-       <Text style={styles.welcomeStyle}>Build Projects</Text>
-       <Text style={styles.textie}>
-        Make apps,games,website and more with step-by-step guidance
-       </Text>
-      <TouchableOpacity> 
-       <Link href="/InfoThreeScreen" style={styles.button}>
-       Next
+import { StyleSheet, View, Text, Image } from "react-native";
+import React from "react";
+import { Link } from "expo-router";
+
+export default function InfoTwoScreen() {
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require("./../assets/coding.jpg")}
+        style={styles.image}
+      />
+      <Text style={styles.welcomeStyle}>Build Projects</Text>
+      <Text style={styles.textie}>
+        Make apps, games, websites, and more with step-by-step guidance
+      </Text>
+      <Link href="/InfoThreeScreen" style={styles.button}>
+        <Text style={{ color: "#fff" }}>Next</Text>
       </Link>
-      </TouchableOpacity>
-      {/* <View style={styles.lastPart}>
-        <Text>I ALREADY HAVE AN ACCOUNT</Text>
-      </View> */}
-        </View>
-    )
+    </View>
+  );
 }
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor:'#fff',
-      //backgroundColor: '#FE979C',
-    //  backgroundColor:'#F6E8DF',
-      alignItems: 'center',
-     justifyContent:'space-evenly',
-      flexDirection:'column'
-    },
-    welcomeStyle:{
-        fontSize:24,
-        textAlign:'center',
-        fontWeight:'mediums',
-        fontFamily:'sans-serif',
-        color:'#000000'
-    },
-    textie:{
-      fontSize:20,
-      textAlign:'center',
-      fontWeight:'mediums',
-      color:'#454545',
-    },
-    button:{
-          color:'#fff',
-           borderRadius:'20px',
-            backgroundColor:'#C36FDE',
-            paddingTop:20,
-            paddingBottom:20,
-            paddingLeft:'8rem',
-            paddingRight:'8rem',
-         },
-         lastPart:{
-          alignItems:'center',
-          textAlign:'center',
-          color:"D3D3D3"
-         }
-  });  
-    
-    
-    
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    flexDirection: "column",
+  },
+  image: {
+    marginTop: 30,
+    width: 400,
+    height: 190,
+    resizeMode: "contain",
+  },
+  welcomeStyle: {
+    fontSize: 24,
+    textAlign: "center",
+    fontWeight: "500",
+    fontFamily: "sans-serif",
+    color: "#000000",
+  },
+  textie: {
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "400",
+    color: "#454545",
+  },
+  button: {
+    backgroundColor: "#C36FDE",
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 80,
+    alignItems: "center",
+  },
+});

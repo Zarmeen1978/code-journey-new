@@ -12,26 +12,30 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "plugins":[
-"expo-router"
+    "plugins": [
+      "expo-router"
     ],
-    "ios": {
-      "supportsTablet": true,
-      "package":"com.codie.codejourney"
-    },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/images/adaptive-icon.png",
+        "foregroundImage": "./app/assets/output-onlinepngtools.png",
         "backgroundColor": "#ffffff"
       },
-      "package":"com.codejourney.codelearning"
+      "package": "com.codejourney.codelearning"
     },
     "web": {
       "bundler": "metro"
     },
-    
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "97bded7a-4189-41e5-95c1-b67f0c6137be"
+      }
+    },
+    "owner": "ahmadmudassir123"
   }
 }

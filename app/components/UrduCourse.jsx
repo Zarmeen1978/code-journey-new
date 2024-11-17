@@ -34,10 +34,8 @@ const UrduCourse = () => {
       <Text style={[styles.title, styles.fontUrdu]}>
         سی پلس پلس کی بنیادی باتیں
       </Text>
-      {/* <Text style={[styles.title, styles.fontUrdu]}>C++ کی بنیادیات</Text> */}
       <Text style={[styles.subtitle, styles.fontUrdu]}>کوڈ جرنی کے ذریعے</Text>
 
-      {/* <Text style={[styles.subtitle, styles.fontUrdu]}>بذریعہ TubeCoder</Text> */}
       <Image
         source={require("../assets/Cplus.png")}
         resizeMethod="contain"
@@ -52,9 +50,6 @@ const UrduCourse = () => {
         استعمال ہوتی ہے۔
       </Text>
 
-      {/* <Text style={[styles.content, styles.fontUrdu]}>
-        C++ ایک عمومی مقصد کی پروگرامنگ زبان ہے جو ویب ترقی، ڈیٹا تجزیہ، اور گیم ترقی سمیت کئی کاموں کے لئے استعمال ہوتی ہے۔
-      </Text> */}
       <Text style={[styles.headingStyle, styles.fontUrdu]}>کورس کا مواد</Text>
       {courseContent.map((item) => (
         <CourseItem key={item.id} id={item.id} title={item.title} />
@@ -78,7 +73,6 @@ const styles = StyleSheet.create({
   subtitle: {
     color: "#454545",
     marginRight: 12,
-    marginRight: 20,
   },
   description: {
     textAlign: "justify",
@@ -90,10 +84,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginRight: 10,
     marginBottom: 10,
-  },
-  content: {
-    textAlign: "justify",
-    // marginRight: 30,
   },
   courseItem: {
     display: "flex",

@@ -1,33 +1,68 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import UrduCourse from '../components/UrduCourse'
-import EnglishCourse from '../components/EnglishCourse'
-import { Link } from 'expo-router'
-import { Button } from 'react-native'
-import WelcomeHeader from '../components/WelcomeHeader'
-import SearchBar from '../components/SearchBar'
-import GlobalApi from '../shared/GlobalApi'
-import Slider from '../components/Slider'
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 
-import CourseList from '../components/CourseList'
-import Paragraph from '../components/Paragraph'
 const Learn = () => {
-  
   return (
-    <>
-    <SafeAreaView style={{padding:30}}>
-      <WelcomeHeader/>
-      <SearchBar/>
-      <Slider/>
-   <Paragraph/>
-   <CourseList/>
-    </SafeAreaView>
-    </>
-  )
-}
+    <View style={styles.container}>
+      <Text style={{ fontSize: 25, textAlign: "center" }}>Start Learning</Text>
+      <Text style={{ marginTop: 6, fontSize: 16 }}>Courses</Text>
 
-export default Learn
+      <Image
+        style={{ marginTop: 5, width: "100%" }}
+        source={require("../assets/ht.png")}
+      />
 
+      <View style={{ flexDirection: "row", gap: 14, marginTop: 9 }}>
+        <Text>
+          <Text style={{ marginLeft: 20 }}>HTML</Text>
+          <Text style={{ marginLeft: 240 }}>1.5 hour</Text>
+        </Text>
+      </View>
 
+      <View style={styles.infoSection}>
+        <Text>Beginning HTML</Text>
+        <Text>0/14</Text>
+      </View>
 
+      <View style={styles.infoSection}>
+        <Text>Beginning HTML</Text>
+        <Text>0/14</Text>
+      </View>
 
+      <View style={styles.infoSection}>
+        <Text>Beginning HTML</Text>
+        <Text>0/14</Text>
+      </View>
+
+      <View style={styles.infoSection}>
+        <Text>Beginning HTML</Text>
+        <Text>0/14</Text>
+      </View>
+    </View>
+  );
+};
+
+export default Learn;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  infoSection: {
+    backgroundColor: "#ccc",
+    borderRadius: 8,
+    alignItems: "flex-start",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    justifyContent: "space-between",
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+});

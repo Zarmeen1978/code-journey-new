@@ -41,7 +41,7 @@ const SignIn = () => {
           username: user.username,
           id: user.id,
           experience: user.experience,
-          rank: user.rank
+          rank: user.rank,
         });
         Alert.alert("Success", "User signed in successfully");
         router.replace("/CourseItem"); // Replace with the actual route

@@ -1,6 +1,6 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import GlobalApi from '../shared/GlobalApi'; // Adjust the path as necessary
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import GlobalApi from "../shared/GlobalApi"; // Adjust the path as necessary
 
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
@@ -19,7 +19,6 @@ const ArticleList = () => {
           description: item.attributes.description,
           image: item.attributes.imageUrl.data.attributes.url, // Adjust according to your API response
         }));
-        console.log("Article",result)
         setArticleList(result);
       } else {
         console.error("No data found in response:", resp);
@@ -31,17 +30,16 @@ const ArticleList = () => {
 
   return (
     <View style={{ marginTop: 15 }}>
-      <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 3 }}>Articles</Text>
+      <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 3 }}>
+        Articles
+      </Text>
       <FlatList
         data={articleList}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
-            <Image
-              source={{ uri: item.image }}
-              style={styles.image}
-            />
+            <Image source={{ uri: item.image }} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.name}</Text>
               <Text style={styles.description}>{item.description}</Text>
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     marginRight: 10,
     borderRadius: 7,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   image: {
     width: 180,
@@ -65,16 +63,16 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 7,
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   description: {
     fontSize: 14,
-    color: 'gray',
+    color: "gray",
   },
 });
 

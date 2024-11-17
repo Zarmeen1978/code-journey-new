@@ -1,7 +1,14 @@
-import { FlatList, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import GlobalApi from '../shared/GlobalApi';
-import { useRouter } from 'expo-router';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import GlobalApi from "../shared/GlobalApi";
+import { useRouter } from "expo-router";
 
 const SelectLanguage = () => {
   const [videoList, setVideoList] = useState([]);
@@ -19,7 +26,7 @@ const SelectLanguage = () => {
           id: item.id,
           name: item.attributes.name,
           des: item.attributes.description,
-          image: item.attributes.videoUrl.data.attributes.url
+          image: item.attributes.videoUrl.data.attributes.url,
         }));
         setVideoList(result);
       } else {
@@ -31,10 +38,10 @@ const SelectLanguage = () => {
   };
 
   const navigateToCourse = (language) => {
-    if (language === 'english') {
-      router.push('/CourseLists');  // Navigate to CourseLists page
+    if (language === "english") {
+      router.push("/CourseLists"); // Navigate to CourseLists page
     } else {
-      router.push('/CourseList');  // Navigate to CourseList page
+      router.push("/CourseList"); // Navigate to CourseList page
     }
   };
 
@@ -44,10 +51,16 @@ const SelectLanguage = () => {
 
       {/* Language Selection Buttons */}
       <View style={styles.languageButtonsContainer}>
-        <TouchableOpacity style={[styles.button, styles.englishButton]} onPress={() => navigateToCourse('english')}>
+        <TouchableOpacity
+          style={[styles.button, styles.englishButton]}
+          onPress={() => navigateToCourse("english")}
+        >
           <Text style={styles.buttonText}>English</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.urduButton]} onPress={() => navigateToCourse('urdu')}>
+        <TouchableOpacity
+          style={[styles.button, styles.urduButton]}
+          onPress={() => navigateToCourse("urdu")}
+        >
           <Text style={styles.buttonText}>Urdu</Text>
         </TouchableOpacity>
       </View>
@@ -59,11 +72,8 @@ const SelectLanguage = () => {
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <View>
-            <TouchableOpacity onPress={() => router.push('/CourseLists')}>
-              <Image
-                source={{ uri: item.image }}
-                style={styles.courseImage}
-              />
+            <TouchableOpacity onPress={() => router.push("/CourseLists")}>
+              <Image source={{ uri: item.image }} style={styles.courseImage} />
             </TouchableOpacity>
           </View>
         )}
@@ -77,14 +87,14 @@ export default SelectLanguage;
 
 const styles = StyleSheet.create({
   heading: {
-    color: 'black',
+    color: "black",
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 3,
   },
   languageButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginVertical: 15,
   },
   button: {
@@ -92,27 +102,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 8,
     marginHorizontal: 5,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 5,
     elevation: 5,
   },
   englishButton: {
-    backgroundColor: '#4CAF50', // Green for English
+    backgroundColor: "#4CAF50", // Green for English
   },
   urduButton: {
-    backgroundColor: '#2196F3', // Blue for Urdu
+    backgroundColor: "#2196F3", // Blue for Urdu
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
   },
   courseImage: {
-    width: 200,
-    height: 120,
-    marginRight: 8,
-    marginTop: 12,
-    borderRadius: 7,
+    width: 150,
+    height: 100,
+    borderRadius: 8,
+    marginRight: 10,
   },
 });

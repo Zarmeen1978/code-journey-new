@@ -1,10 +1,16 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../components/FormField";
 import Button from "../components/Button";
 import { Link } from "expo-router";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const UrduSignIn = () => {
   const [form, setForm] = useState({
@@ -29,7 +35,6 @@ const UrduSignIn = () => {
             />
           </View>
           <Text style={styles.textStyle}> لاگ ان کریں </Text>
-          {/* Form Field One */}
           <FormField
             style={styles.mmr}
             title="ای میل"
@@ -42,7 +47,6 @@ const UrduSignIn = () => {
             }
             keyboardType="email-address"
           />
-          {/* Form Field Two */}
           <FormField
             style={styles.mmr}
             title="پاس ورڈ"
@@ -80,6 +84,7 @@ const UrduSignIn = () => {
     </SafeAreaView>
   );
 };
+
 export default UrduSignIn;
 
 const styles = StyleSheet.create({
@@ -101,7 +106,6 @@ const styles = StyleSheet.create({
     justifyContent: "center", // Center the image vertically within its container
   },
   mmr: {
-    //marginLeft:20,
     backgroundColor: "#fff",
     borderRadius: 12,
     height: 39,
@@ -141,5 +145,3 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
 });
-
-//export default UrduSignIn

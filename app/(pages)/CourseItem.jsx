@@ -1,36 +1,40 @@
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import UrduCourse from "../components/UrduCourse";
+import EnglishCourse from "../components/EnglishCourse";
+import { Link } from "expo-router";
+import { Button } from "react-native";
+import WelcomeHeader from "../components/WelcomeHeader";
+import SearchBar from "../components/SearchBar";
+import GlobalApi from "../shared/GlobalApi";
+import Slider from "../components/Slider";
+import VideoCourse from "../components/VideoCourse";
+import CourseList from "../components/CourseList";
+import Paragraph from "../components/Paragraph";
+import ArticleList from "../components/ArticleList";
+import OtherCourse from "../components/OtherCourse";
 
-
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import UrduCourse from '../components/UrduCourse'
-import EnglishCourse from '../components/EnglishCourse'
-import { Link } from 'expo-router'
-import { Button } from 'react-native'
-import WelcomeHeader from '../components/WelcomeHeader'
-import SearchBar from '../components/SearchBar'
-import GlobalApi from '../shared/GlobalApi'
-import Slider from '../components/Slider'
-import VideoCourse from '../components/VideoCourse'
-import CourseList from '../components/CourseList'
-import Paragraph from '../components/Paragraph'
-import ArticleList from '../components/ArticleList'
-import OtherCourse from '../components/OtherCourse'
 const CourseItem = () => {
-  
   return (
-    <>
-    <ScrollView style={{padding:30}}>
-   <WelcomeHeader/>
-   <Slider/>
-   <VideoCourse/>
-   {/* <OtherCourse/> */}
-   {/* <CourseList/> */}
+    <ScrollView style={{ padding: 30 }}>
+      <WelcomeHeader />
+      <Slider />
+      <VideoCourse />
+      {/* <OtherCourse /> */}
+      {/* <CourseList /> */}
     </ScrollView>
-    </>
-  )
-}
+  );
+};
 
-export default CourseItem
+export default CourseItem;
 
 const styles = StyleSheet.create({
   image: {
@@ -39,15 +43,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 10,
   },
-  container:{
-   // backgroundColor:'#000000',
-    display:'flex', alignItems:'center',
-    color:'#454545', 
+  container: {
+    display: "flex",
+    alignItems: "center",
+    color: "#454545",
     fontSize: 78,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
-  }
-})
-
-
-
+  },
+});

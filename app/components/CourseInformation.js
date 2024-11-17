@@ -16,11 +16,11 @@ export default function CourseInformation({ course, userProgress, courseType }) 
 
     const onChapterPress = (courseContent) => {
         // (courseType == 'text') 
-        console.log('in ch press',courseContent)
-            navigation.navigate('CourseChapter', {
-                courseContent: courseContent,
-                courseId: course.id,
-            });
+        console.log('in ch press', courseContent);
+        navigation.navigate('CourseChapter', {
+            courseContent: courseContent,
+            courseId: course.id,
+        });
         //  else {
         //     navigation.navigate('play-video', {
         //         courseContent: courseContent,

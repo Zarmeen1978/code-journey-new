@@ -1,13 +1,20 @@
-import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from "react";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const courseContent = [
-  { id: '01', title: 'Introduction' },
-  { id: '02', title: 'Variables' },
-  { id: '03', title: 'Data Type' },
-  { id: '04', title: 'Numbers' },
-  { id: '05', title: 'Casting' }
+  { id: "01", title: "Introduction" },
+  { id: "02", title: "Variables" },
+  { id: "03", title: "Data Type" },
+  { id: "04", title: "Numbers" },
+  { id: "05", title: "Casting" },
 ];
 
 const CourseItem = ({ id, title }) => (
@@ -27,16 +34,18 @@ const EnglishCourse = () => {
       <Text style={styles.title}>Basic of C++</Text>
       <Text style={styles.subtitle}>By CODE JOURNEY</Text>
       <Image
-        source={require('../assets/Cplus.png')}
-        resizeMethod='contain'
+        source={require("../assets/Cplus.png")}
+        resizeMethod="contain"
         style={styles.image}
       />
       <Text style={styles.headingStyle}>About Course</Text>
       <Text style={styles.description}>
-        C++ is a general-purpose programming language that is used for a wide range of tasks including web development, data analysis, and game development.
+        C++ is a general-purpose programming language that is used for a wide
+        range of tasks including web development, data analysis, and game
+        development.
       </Text>
       <Text style={styles.headingStyle}>Course Content</Text>
-      {courseContent.map(item => (
+      {courseContent.map((item) => (
         <CourseItem key={item.id} id={item.id} title={item.title} />
       ))}
     </ScrollView>
@@ -52,10 +61,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   subtitle: {
-    color: '#454545',
+    color: "#454545",
   },
   image: {
     height: 150,
@@ -66,35 +75,34 @@ const styles = StyleSheet.create({
   headingStyle: {
     marginTop: 10,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   description: {
-    textAlign: 'justify',
+    textAlign: "justify",
     marginRight: 20,
   },
   courseItem: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    flexDirection: 'row',
+    display: "flex",
+    justifyContent: "space-evenly",
+    flexDirection: "row",
     marginTop: 12,
-    backgroundColor:'#FFFFF7',
-    //backgroundColor: 'lightblue',
+    backgroundColor: "#FFFFF7",
     borderRadius: 9,
     padding: 6,
-    width: '93%',
+    width: "93%",
   },
   courseNumber: {
-    color: '#454545',
+    color: "#454545",
     fontSize: 20,
   },
   asterisk: {
-    color: 'blues',
+    color: "blue",
     width: 25,
-    height:20,
-    backgroundColor:'lightblue',
-    borderRadius:10,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: 20,
+    backgroundColor: "lightblue",
+    borderRadius: 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

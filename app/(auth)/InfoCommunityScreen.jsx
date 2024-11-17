@@ -1,69 +1,58 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
+
 export default function InfoCommunityScreen() {
   return (
     <View style={styles.container}>
       <Image
         source={require("./../assets/community.jpg")}
-        style={{
-          marginTop: 30,
-          width: 400,
-          height: 190,
-          resizeMode: "contain",
-        }}
+        style={styles.image}
       />
       <Text style={styles.welcomeStyle}>Join the community</Text>
       <Text style={styles.textie}>
         Master the skills to read and write code, build apps and advance your
         career
       </Text>
-      <TouchableOpacity>
-        <Link href="/GetStarted" style={styles.button}>
-          <Text>Next</Text>
-        </Link>
-      </TouchableOpacity>
-      {/* <View style={styles.lastPart}>
-        <Text>I ALREADY HAVE AN ACCOUNT</Text>
-      </View> */}
+      <Link href="/GetStarted" style={styles.button}>
+        <Text style={{ color: "#fff" }}>Next</Text>
+      </Link>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    //backgroundColor: '#FE979C',
-    //  backgroundColor:'#F6E8DF',
     alignItems: "center",
     justifyContent: "space-evenly",
     flexDirection: "column",
   },
+  image: {
+    marginTop: 30,
+    width: 400,
+    height: 190,
+    resizeMode: "contain",
+  },
   welcomeStyle: {
     fontSize: 24,
     textAlign: "center",
-    fontWeight: "mediums",
+    fontWeight: "500",
     fontFamily: "sans-serif",
     color: "#000000",
   },
   textie: {
     fontSize: 20,
     textAlign: "center",
-    fontWeight: "mediums",
+    fontWeight: "400",
     color: "#454545",
   },
   button: {
-    color: "#fff",
-    borderRadius: "20px",
     backgroundColor: "#C36FDE",
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: "8rem",
-    paddingRight: "8rem",
-  },
-  lastPart: {
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 80,
     alignItems: "center",
-    textAlign: "center",
-    color: "D3D3D3",
   },
 });

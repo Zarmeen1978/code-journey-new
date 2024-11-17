@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import AppContext from "../context/AppContext";
 import { useRouter } from "expo-router";
+
 const ProfilePage = ({ user }) => {
   const router = useRouter();
   const { setUser } = useContext(AppContext);
@@ -101,43 +102,28 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: "#000",
     shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
+    shadowRadius: 5,
     elevation: 5,
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
-    marginBottom: 10,
-    color: "#333333",
+    marginBottom: 15,
   },
   detailItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
+    marginBottom: 10,
   },
   label: {
     fontSize: 16,
-    color: "#555555",
+    fontWeight: "bold",
   },
   value: {
     fontSize: 16,
-    fontWeight: "bold",
-    color: "#6200ee",
+    color: "#555555",
   },
   buttonContainer: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    backgroundColor: "#ffffff",
-    borderRadius: 10,
-    marginVertical: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
+    marginTop: 20,
+    marginHorizontal: 20,
   },
 });
 

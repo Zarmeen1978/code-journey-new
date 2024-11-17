@@ -93,24 +93,22 @@ const SignUp = () => {
                 onChangeText={(e) => setForm({ ...form, email: e })}
               />
             </Pressable>
-          </View>
-        </TouchableWithoutFeedback>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Username</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.inputText}
-              placeholder="Enter your username"
-              placeholderTextColor="#003f5c"
-              value={form.username}
-              onChangeText={(e) => setForm({ ...form, username: e })}
-            />
-          </View>
-        </View>
+            <Text style={styles.label}>Username</Text>
+            <Pressable
+              onPress={() => emailInputRef.current.focus()}
+              style={styles.inputView}
+            >
+              <TextInput
+                ref={emailInputRef}
+                style={styles.inputText}
+                placeholder="Enter your username"
+                placeholderTextColor="#003f5c"
+                value={form.username}
+                onChangeText={(e) => setForm({ ...form, username: e })}
+              />
+            </Pressable>
 
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={styles.inputContainer}>
             <Text style={styles.label}>Password</Text>
             <Pressable
               onPress={() => passwordInputRef.current.focus()}
@@ -128,22 +126,14 @@ const SignUp = () => {
             </Pressable>
           </View>
         </TouchableWithoutFeedback>
+
         <TouchableOpacity
           onPress={submit}
-          style={styles.signUpBtn}
+          style={styles.loginBtn}
           disabled={isSubmitting}
         >
-          <Text style={styles.signUpText}>
-            {isSubmitting ? "Signing Up..." : "SIGN UP"}
-          </Text>
+          <Text style={styles.loginText}>SIGN UP</Text>
         </TouchableOpacity>
-
-        <View style={styles.signInPrompt}>
-          <Text style={styles.promptText}>Already have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Sign-in")}>
-            <Text style={styles.signInText}>Sign In</Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -156,17 +146,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#4B0082",
     alignItems: "center",
+    justifyContent: "center",
     width: "100%",
   },
   scrollViewContent: {
     flexGrow: 1,
     alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 20,
     width: "100%",
   },
   imageContainer: {
     width: "100%",
     alignItems: "center",
+    justifyContent: "center",
     marginBottom: 20,
   },
   sizeImage: {
@@ -183,7 +176,6 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: "100%",
     marginBottom: 20,
-    paddingHorizontal: 20,
   },
   label: {
     color: "#fff",
@@ -203,11 +195,11 @@ const styles = StyleSheet.create({
   inputText: {
     backgroundColor: "transparent",
     borderWidth: 0,
-    outlineStyle: "none", // Attempt to disable outline directly
+    outlineStyle: "none",
     outlineWidth: 0,
     outlineColor: "transparent",
   },
-  signUpBtn: {
+  loginBtn: {
     width: "90%",
     backgroundColor: "#C36FDE",
     borderRadius: 25,
@@ -217,24 +209,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  signUpText: {
+  loginText: {
     color: "#F2F0F4",
     fontSize: 18,
     fontWeight: "bold",
-  },
-  signInPrompt: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 20,
-  },
-  promptText: {
-    color: "#fff",
-    fontSize: 14,
-  },
-  signInText: {
-    color: "#C36FDE",
-    fontSize: 14,
-    marginLeft: 5,
-    textDecorationLine: "underline",
   },
 });

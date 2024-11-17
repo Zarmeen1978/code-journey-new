@@ -22,18 +22,17 @@ export default function CourseLists() {
 
   useEffect(() => {
     getCourseList();
-  }, [currentCourse]); // Add currentCourse as a dependency to trigger the effect when it changes
+  }, [currentCourse]); // Add currentCourse as a dependency to trigger effect when it changes
 
   const getCourseList = async () => {
     try {
-  
       let resp;
       if (currentCourse === "C Course") {
-        resp = (await GlobalApi.getJsEnglishCourse()).data;
+        resp = (await GlobalApi.getCourseEnglishList()).data;
       } else if (currentCourse === "Python Course") {
         resp = (await GlobalApi.getPythonEnglishCourse()).data;
       } else if (currentCourse === "JS Course") {
-        resp = (await GlobalApi.getCourseEnglishList()).data;
+        resp = (await GlobalApi.getJsEnglishCourse()).data;
       } else {
         // Default API call if no match for currentCourse
         resp = (await GlobalApi.getCourseEnglishList()).data;
@@ -87,7 +86,7 @@ export default function CourseLists() {
           marginBottom: 8,
         }}
       >
-        Course English Detail
+        Course Detail
       </Text>
       <FlatList
         style={{ marginLeft: 25 }}

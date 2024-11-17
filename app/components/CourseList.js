@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import GlobalApi from "../shared/GlobalApi";
 import { FlatList } from "react-native";
 import { Image } from "react-native";
-//import Colors from '../Shared/Colors';
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 

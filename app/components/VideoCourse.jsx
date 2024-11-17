@@ -1,12 +1,12 @@
-import React from 'react'
-import ImageSlider from './imageSlider'
+import React from "react";
+import ImageSlider from "./imageSlider";
 
 function VideoCourse() {
   return (
     <div>
-      <ImageSlider/>
+      <ImageSlider />
     </div>
-  )
+  );
 }
 
-export default VideoCourse
+export default VideoCourse;

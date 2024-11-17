@@ -1,71 +1,43 @@
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { Ionicons } from '@expo/vector-icons';
+import React from "react";
+import { TextInput, Text, View, StyleSheet } from "react-native";
 
-const FormField = ({ title, value, placeholder, handleChangeText, style, ...props }) => {
-  const [showPassword, setShowPassword] = useState(false)
+const FormField = ({
+  value,
+  setValue,
+  placeholder,
+  secureTextEntry,
+  error,
+}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.textStyle}>
-        {title}
-      </Text>
-
-      <View style={styles.field} >
-        <TextInput 
-          value={value}
-          placeholder={placeholder}
-        //  placeholderTextColor="#7b7b8b"
-          onChangeText={handleChangeText}
-          secureTextEntry={title === 'Password' && !showPassword}
-         style={style} 
-          {...props}
-        />
-        {title === 'Password' && (
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            {/* <Ionicons 
-              name={showPassword ? "eye-off-outline" : "eye-outline"} 
-              size={24} 
-              color="black"
-              style={{ width: 24, height: 24,marginRight:9 }} 
-              resizeMode='contain' 
-            /> */}
-          </TouchableOpacity>
-        )}
-      </View>
+    <View style={styles.fieldContainer}>
+      <TextInput
+        style={styles.inputField}
+        value={value}
+        onChangeText={setValue}
+        placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
+      />
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
-  )
-}
+  );
+};
 
-export default FormField
+export default FormField;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    marginLeft:32,
-    marginTop:30,
+  fieldContainer: {
+    marginTop: 10,
   },
-  textStyle: {
-    color: '#C36FDE',
-    fontWeight: '500', // 'medium' is not a valid fontWeight in React Native
-    fontSize:20,
-    marginRight:35,
-    marginBottom:12
-},
-  field: {
-    borderRadius: 12,
-    height: 39,
-     width: '80%',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent:'space-between',
-    flexDirection: 'row',
+  inputField: {
+    paddingVertical: 15,
+    paddingLeft: 10,
+    backgroundColor: "#F5F5F5",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#ccc",
   },
-  
-  textInput: {
-    flex: 1,
-    color: 'black',
-    fontWeight: '600', // 'semibold' is not a valid fontWeight in React Native
-  }
-})
+  errorText: {
+    color: "red",
+    fontSize: 12,
+  },
+});

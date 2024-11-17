@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { FlatList, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import GlobalApi from "../shared/GlobalApi";
 import { useRouter } from "expo-router";
-import BoxedImagePage from "./Image";
 
 const VideoCourse = () => {
   const [videoList, setVideoList] = useState([]);
