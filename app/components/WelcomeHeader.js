@@ -21,18 +21,22 @@ const WelcomeHeader = () => {
         </Text>
       </View>
       <View>
-        <FontAwesome6
-          name="user"
-          size={24}
-          color="white"
-          style={{
-            width: "fit-to-content",
-            borderRadius: 100,
-            backgroundColor: "#C36FDE",
-            padding: 5,
-          }}
-        />
         <TouchableOpacity onPress={onPress}>
+          <FontAwesome6
+            name="user"
+            size={24}
+            color="white"
+            style={{
+              // width: "fit-to-content",
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              backgroundColor: "#C36FDE",
+              padding: 5,
+              paddingLeft: 8,
+              alignSelf: "center",
+            }}
+          />
           <Text>Go to Profile</Text>
         </TouchableOpacity>
       </View>

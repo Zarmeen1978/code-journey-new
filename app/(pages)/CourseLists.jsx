@@ -10,6 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 import GlobalApi from "../shared/GlobalApi";
 import { useNavigation } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function CourseLists() {
   const { currentCourse, setCurrentCourse } = useContext(AppContext);
@@ -65,19 +66,41 @@ export default function CourseLists() {
 
   return (
     <ScrollView style={{ marginTop: 10 }}>
-      {/* Back Arrow */}
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text
-          style={{
-            fontSize: 18,
-            fontWeight: "bold",
-            marginLeft: 12,
-            marginTop: 10,
-          }}
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+          backgroundColor: "#f8f8f8", // Light background color for the header
+          borderBottomWidth: 1,
+          borderBottomColor: "#ddd",
+        }}
+      >
+        {/* Back Button */}
+        <TouchableOpacity
+          style={{ flexDirection: "row", marginTop: 6 }}
+          onPress={() => navigation.navigate("CourseItem")}
         >
-          ← Back
-        </Text>
-      </TouchableOpacity>
+          <Ionicons
+            style={{ alignSelf: "center" }}
+            name="arrow-back-sharp"
+            size={24}
+            color="black"
+          />
+          <Text
+            style={{
+              padding: 5,
+              marginLeft: 15,
+              fontSize: 24,
+            }}
+          >
+            Back
+          </Text>
+        </TouchableOpacity>
+
+        {/* Title */}
+      </View>
 
       <Text
         style={{

@@ -19,8 +19,8 @@ import AppContext from "../context/AppContext";
 
 const SignIn = () => {
   const [form, setForm] = useState({
-    email: "ahmad@gmail.com",
-    password: "123abc",
+    email: "",
+    password: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();

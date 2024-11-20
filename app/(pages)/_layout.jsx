@@ -66,6 +66,12 @@ const _layout = () => {
           }}
         />
         <Stack.Screen
+          name="CourseList"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="UrduCourse"
           options={{
             headerShown: false,

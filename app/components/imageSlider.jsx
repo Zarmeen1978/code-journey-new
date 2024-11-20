@@ -1,11 +1,18 @@
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useContext } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import AppContext from "../context/AppContext";
 
-function ImageSlider() {
-  const router = useRouter();
+export default function ImageSlider() {
   const { setCurrentCourse } = useContext(AppContext);
+  const router = useRouter();
 
   const handleImagePress = (courseName) => {
     setCurrentCourse(courseName); // Update the current course in context
@@ -14,43 +21,74 @@ function ImageSlider() {
   };
 
   return (
-    <>
+    <View style={{ marginTop: 20 }}>
       <Text style={styles.title}>Select a Course</Text>
+      <ScrollView>
+        <View style={styles.sliderContainer}>
+          {/* First Course */}
+          <TouchableOpacity
+            style={[styles.courseCard, { backgroundColor: "#80FFDB" }]}
+            onPress={() => handleImagePress("C Course")}
+          >
+            <Image
+              style={styles.courseImage}
+              source={require("../assets/cSqaure.png")}
+            />
+            <Text style={styles.courseText}>
+              Dive into C++ - A powerful language for system programming, game
+              development, and building high-performance applications.
+            </Text>
+          </TouchableOpacity>
 
-      {/* C Course */}
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => handleImagePress("C Course")}>
-          <Image source={require("../assets/C.png")} style={styles.image} />
-        </TouchableOpacity>
-      </View>
+          {/* Second Course */}
+          <TouchableOpacity
+            style={[styles.courseCard, { backgroundColor: "#4AC8F0" }]}
+            onPress={() => handleImagePress("Python Course")}
+          >
+            <Image
+              style={styles.courseImage}
+              source={require("../assets/pythonSquare.png")}
+            />
+            <Text style={styles.courseText}>
+              Learn Python - A versatile programming language ideal for
+              beginners and professionals. Build your skills in data analysis,
+              web development, and more.
+            </Text>
+          </TouchableOpacity>
 
-      {/* Python Course */}
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => handleImagePress("Python Course")}>
-          <Image
-            source={require("../assets/python.png")}
-            style={styles.image}
-          />
-        </TouchableOpacity>
-      </View>
-
-      {/* JS Course */}
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => handleImagePress("JS Course")}>
-          <Image source={require("../assets/js.png")} style={styles.image} />
-        </TouchableOpacity>
-      </View>
-    </>
+          {/* Third Course */}
+          <TouchableOpacity
+            style={[styles.courseCard, { backgroundColor: "#D7CFFF" }]}
+            onPress={() => handleImagePress("JS Course")}
+          >
+            <Image
+              style={styles.courseImage}
+              source={require("../assets/javascript.png")}
+            />
+            <Text style={styles.courseText}>
+              Master React - The framework for building modern web and mobile
+              apps. Explore component-based architecture and state management.
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
+  sliderContainer: {
+    padding: 12,
     alignItems: "center",
-    backgroundColor: "#f0f0f0",
-    gap: 9,
+    justifyContent: "space-between",
+  },
+  courseCard: {
+    flexDirection: "row",
+    borderRadius: 20,
+    marginBottom: 20,
+    padding: 20,
+    gap: 20,
+    alignItems: "center",
   },
   title: {
     textAlign: "left",
@@ -59,12 +97,15 @@ const styles = StyleSheet.create({
     fontSize: 29,
     fontWeight: "bold",
   },
-  image: {
-    width: 240,
-    height: 120,
-    marginTop: 12,
-    borderRadius: 7,
+  courseImage: {
+    width: 89,
+    height: 95,
+    borderRadius: 50,
+  },
+  courseText: {
+    flex: 1,
+    fontSize: 14,
+    color: "#333",
+    lineHeight: 20,
   },
 });
-
-export default ImageSlider;

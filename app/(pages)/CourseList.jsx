@@ -10,12 +10,13 @@ import React, { useContext, useEffect, useState } from "react";
 import GlobalApi from "../shared/GlobalApi";
 import { useNavigation } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function CourseList() {
-  const { currentCourse, setCurrentCourse } = useContext(AppContext);
+  const { currentCourse } = useContext(AppContext);
   const [courseList, setCourseList] = useState([]);
   const navigation = useNavigation();
-
+  console.log(currentCourse, "sss");
   const green = "#00FF00"; // Define your color here or use Colors.green
   const white = "#FFFFFF"; // Define your color here or use Colors.white
   const gray = "#454545";
@@ -42,7 +43,7 @@ export default function CourseList() {
       name: item.attributes.name,
       description: item.attributes.description,
       image: item.attributes.image.data.attributes.url,
-      Topic: item.attributes.example,
+      Topic: item.attributes.modules,
     }));
     setCourseList(result);
   };
@@ -56,6 +57,41 @@ export default function CourseList() {
 
   return (
     <ScrollView style={{ marginTop: 10 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+          backgroundColor: "#f8f8f8", // Light background color for the header
+          borderBottomWidth: 1,
+          borderBottomColor: "#ddd",
+        }}
+      >
+        {/* Back Button */}
+        <TouchableOpacity
+          style={{ flexDirection: "row", marginTop: 6 }}
+          onPress={() => navigation.navigate("CourseItem")}
+        >
+          <Ionicons
+            style={{ alignSelf: "center" }}
+            name="arrow-back-sharp"
+            size={24}
+            color="black"
+          />
+          <Text
+            style={{
+              padding: 5,
+              marginLeft: 15,
+              fontSize: 24,
+            }}
+          >
+            Back
+          </Text>
+        </TouchableOpacity>
+
+        {/* Title */}
+      </View>
       <Text
         style={{
           fontSize: 30,

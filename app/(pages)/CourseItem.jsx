@@ -26,7 +26,7 @@ const CourseItem = () => {
   return (
     <ScrollView style={{ padding: 30 }}>
       <WelcomeHeader />
-      <Slider />
+      {/* <Slider /> */}
       <VideoCourse />
       {/* <OtherCourse /> */}
       {/* <CourseList /> */}

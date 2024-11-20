@@ -1,5 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet, Button, ScrollView, TouchableOpacity, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  ScrollView,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
@@ -37,12 +46,15 @@ const Profile = () => {
     setUser(null);
     router.replace("/"); // Navigate to the "Login" screen
   };
-
+  console.log(userData, "dataa==>");
   if (loading) return <Text>Loading...</Text>;
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.backButton}
+      >
         <Ionicons name="arrow-back-sharp" size={24} color="black" />
       </TouchableOpacity>
 
