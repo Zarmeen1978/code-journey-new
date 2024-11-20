@@ -5,67 +5,102 @@ import {
   Image,
   Dimensions,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import GlobalApi from "../shared/GlobalApi";
+import { useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native-web";
 
 export default function Slider() {
   const [slider, setSlider] = useState([]);
   const [error, setError] = useState(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
-    getSlider();
+    // Fetch data here if required
   }, []);
 
-  const getSlider = async () => {
-    try {
-      const response = await GlobalApi.getSlider();
-      if (!response || !response.data) {
-        throw new Error("Invalid response structure");
-      }
-
-      const result = response.data;
-      const resp = result.data.map((item) => ({
-        id: item.id,
-        name: item.attributes.name,
-        image: item.attributes.image.data.attributes.url,
-      }));
-
-      setSlider(resp);
-    } catch (err) {
-      console.error("Error fetching slider data:", err);
-      setError("Failed to fetch slider data");
-    }
+  const navigateToDetails = () => {
+    navigation.navigate("CourseList");
   };
 
   return (
     <View style={{ marginTop: 20 }}>
-      {error && <Text style={styles.errorText}>{error}</Text>}
-      <FlatList
-        data={slider}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.imageContainer}>
-            <Image source={{ uri: item.image }} style={styles.image} />
-          </View>
-        )}
-      />
+      <ScrollView>
+        <View style={styles.sliderContainer}>
+          {/* First Course */}
+          <TouchableOpacity
+            style={[styles.courseCard, { backgroundColor: "#4AC8F0" }]}
+            onPress={() => navigateToDetails()}
+          >
+            <Image
+              style={styles.courseImage}
+              source={require("../assets/pythonSquare.png")}
+            />
+            <Text style={styles.courseText}>
+              Learn Python - A versatile programming language ideal for beginners and professionals. 
+              Build your skills in data analysis, web development, and more.
+            </Text>
+          </TouchableOpacity>
+
+          {/* Second Course */}
+          <TouchableOpacity
+            style={[styles.courseCard, { backgroundColor: "#D7CFFF" }]}
+            onPress={() => navigateToDetails()}
+          >
+            <Image
+              style={styles.courseImage}
+              source={require("../assets/javascript.png")}
+            />
+            <Text style={styles.courseText}>
+              Master React - The framework for building modern web and mobile apps. 
+              Explore component-based architecture and state management.
+            </Text>
+          </TouchableOpacity>
+
+          {/* Third Course */}
+          <TouchableOpacity
+            style={[styles.courseCard, { backgroundColor: "#80FFDB" }]}
+            onPress={() => navigateToDetails()}
+          >
+            <Image
+              style={styles.courseImage}
+              source={require("../assets/cSqaure.png")}
+            />
+            <Text style={styles.courseText}>
+              Dive into C++ - A powerful language for system programming, 
+              game development, and building high-performance applications.
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  errorText: {
-    color: "red",
+  sliderContainer: {
+    padding: 12,
+    alignItems: "center",
+    justifyContent: "space-between",
   },
-  imageContainer: {
-    marginRight: 15,
+  courseCard: {
+    flexDirection: "row",
+    borderRadius: 20,
+    marginBottom: 20,
+    padding: 20,
+    gap: 20,
+    alignItems: "center",
   },
-  image: {
-    width: Dimensions.get("screen").width * 0.83,
-    height: 150,
-    borderRadius: 10,
+  courseImage: {
+    width: 89,
+    height: 95,
+    borderRadius: 50,
+  },
+  courseText: {
+    flex: 1,
+    fontSize: 14,
+    color: "#333",
+    lineHeight: 20,
   },
 });

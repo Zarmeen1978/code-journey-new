@@ -58,7 +58,7 @@ const TabsLayout=()=>{
             )
         }}
         />
-        <Tabs.Screen name='Reward'
+        {/* <Tabs.Screen name='Reward'
         options={{
             title:'Reward',
             headerShown:false,
@@ -85,7 +85,7 @@ const TabsLayout=()=>{
                 />
             )
         }}
-        />
+        /> */}
         <Tabs.Screen name='Profile'
         options={{
             title:'Profile',

@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  StyleSheet
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import GlobalApi from "../shared/GlobalApi";
@@ -55,20 +56,22 @@ export default function CourseList() {
   };
 
   return (
+    <>
     <ScrollView style={{ marginTop: 10 }}>
-      <Text
+      {/* <Text
         style={{
           fontSize: 30,
           fontWeight: "bold",
           textTransform: "capitalize",
           fontFamily: "sans-serif",
           marginTop: 25,
+          color:'#C36FDE',
           marginLeft: 12,
           marginBottom: 8,
         }}
       >
         Course Detail
-      </Text>
+      </Text> */}
       <FlatList
         style={{ marginLeft: 25 }}
         data={courseList}
@@ -107,5 +110,6 @@ export default function CourseList() {
         )}
       />
     </ScrollView>
+    </>
   );
 }

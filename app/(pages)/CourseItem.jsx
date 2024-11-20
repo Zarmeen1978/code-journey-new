@@ -21,13 +21,15 @@ import CourseList from "../components/CourseList";
 import Paragraph from "../components/Paragraph";
 import ArticleList from "../components/ArticleList";
 import OtherCourse from "../components/OtherCourse";
+import TopSection from "../components/TopSection";
 
 const CourseItem = () => {
   return (
-    <ScrollView style={{ padding: 30 }}>
-      <WelcomeHeader />
+    <ScrollView style={{ padding: 12 }}>
+      {/* <WelcomeHeader /> */}
+      <TopSection/>
       <Slider />
-      <VideoCourse />
+      {/* <VideoCourse /> */}
       {/* <OtherCourse /> */}
       {/* <CourseList /> */}
     </ScrollView>

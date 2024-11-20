@@ -13,10 +13,10 @@ const WelcomeHeader = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <View>
-        <Text style={{ color: "#C36FDE" }}>Hello</Text>
-        <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C36FDE" }}>
+        <Text style={{ color: "#80FFDB" }}>Hello</Text>
+        <Text style={{ fontSize: 20, fontWeight: "bold", color: "#80FFDB" }}>
           {user?.username || "User"} {/* Display username from context */}
         </Text>
       </View>
@@ -28,12 +28,13 @@ const WelcomeHeader = () => {
           style={{
             width: "fit-to-content",
             borderRadius: 100,
-            backgroundColor: "#C36FDE",
+            backgroundColor: "#80FFDB",
             padding: 5,
           }}
         />
         <TouchableOpacity onPress={onPress}>
-          <Text>Go to Profile</Text>
+          <Text style={{color:'#80FFDB'}}
+          >Go to Profile</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -43,12 +44,12 @@ const WelcomeHeader = () => {
 export default WelcomeHeader;
 
 const styles = StyleSheet.create({
-  container: {
+  containerFit: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#FAF0F6",
+    backgroundColor: "#C36FDE",
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
     height: 90,
