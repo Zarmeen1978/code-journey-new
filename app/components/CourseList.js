@@ -24,7 +24,7 @@ export default function CourseList() {
       name: item.attributes.name,
       description: item.attributes.description,
       image: item.attributes.image.data.attributes.url,
-      Topic: item.attributes.example,
+      Topic: item.attributes.modules,
     }));
     console.log("here is the data from course List", result);
     setCourseList(result);

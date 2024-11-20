@@ -1,12 +1,14 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
 import GlobalApi from "../shared/GlobalApi";
 
-const CongratulationScreen = () => {
+const CongratulationScreen = ({ route }) => {
   const navigation = useNavigation();
+  const param = useRoute().params;
+  const { points } = param;
   const { user, setUser } = useContext(AppContext);
   const [hasUpdated, setHasUpdated] = useState(false); // New flag to control effect
 
@@ -17,7 +19,7 @@ const CongratulationScreen = () => {
 
       // Parse experience, add 100 points
       const updatedExperience = (
-        parseInt(user.experience, 10) + 100
+        parseInt(user.experience, 10) + points
       ).toString();
 
       // Determine new rank based on updated experience points
@@ -63,9 +65,26 @@ const CongratulationScreen = () => {
       <Text style={styles.congratulationText}>Congratulations!</Text>
       <Image source={require("../assets/win.jpg")} style={styles.image} />
       <Text style={styles.messageText}>
-        You have successfully completed the task and gained 100 Experience
+        You have successfully completed the task and gained {points} Experience
         Points!
       </Text>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("CourseDetails", {
+            courseData: param.courseData,
+            courseType: "text",
+          })
+        }
+        style={{
+          backgroundColor: "green",
+          padding: 10,
+          borderRadius: 7,
+          width: "100%",
+          marginTop: "30%",
+        }}
+      >
+        <Text style={{ textAlign: "center", color: "white" }}>Finish</Text>
+      </TouchableOpacity>
     </View>
   );
 };

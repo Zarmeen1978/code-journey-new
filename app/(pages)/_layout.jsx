@@ -14,49 +14,65 @@ const _layout = () => {
     setIsMounted(true);
   }, []);
 
-  useEffect(() => {
-    const excludeRoutes = ["/", "/Sign-in", "/Sign-up"]; // Routes to skip
-    if (isMounted && !user && !excludeRoutes.includes(pathname)) {
-      router.replace("/"); // Only navigate if route is not in exclude list
-    }
-  }, [user, isMounted, pathname]);
+  // useEffect(() => {
+  //   const excludeRoutes = ["/", "/Sign-in", "/Sign-up"]; // Routes to skip
+  //   if (isMounted && !user && !excludeRoutes.includes(pathname)) {
+  //     router.replace("/"); // Only navigate if route is not in exclude list
+  //   }
+  // }, [user, isMounted, pathname]);
   return (
     <>
-    <Stack>
-    <Stack.Screen name='CourseItem'
-      options={{
-        headerShown:false
-      }} />
-      <Stack.Screen name='CourseDetails'
-      options={{
-        headerShown:false
-      }} />
-       <Stack.Screen name='CourseChapter'
-      options={{
-        headerShown:false
-      }} />
-       <Stack.Screen name='Profile'
-      options={{
-        headerShown:false
-      }} />
-       <Stack.Screen name='CongratulationScreen'
-      options={{
-        headerShown:false
-      }} />
-      <Stack.Screen name='CourseListEnglish'
-      options={{
-        headerShown:false
-      }} />
-      <Stack.Screen name='CourseLists'
-      options={{
-        headerShown:false
-      }} />
-       <Stack.Screen name='UrduCourse'
-      options={{
-        headerShown:false
-      }} />
-    </Stack>
-    <StatusBar  backgroundColor='#4B0082' style='light'/>
+      <Stack>
+        <Stack.Screen
+          name="CourseItem"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CourseDetails"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CourseChapter"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Profile"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CongratulationScreen"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CourseListEnglish"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CourseLists"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="UrduCourse"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
+      <StatusBar backgroundColor="#4B0082" style="light" />
     </>
   );
 };

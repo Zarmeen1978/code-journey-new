@@ -18,7 +18,10 @@ import GlobalApi from "../shared/GlobalApi";
 import AppContext from "../context/AppContext";
 
 const SignIn = () => {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({
+    email: "ahmad@gmail.com",
+    password: "123abc",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { setUser } = useContext(AppContext);
@@ -34,6 +37,7 @@ const SignIn = () => {
     setIsSubmitting(true);
     try {
       const response = await GlobalApi.loginUser(form.email, form.password);
+      console.log(response, "res==>");
       if (response.ok && response.data) {
         const { jwt, user } = response.data;
         setUser({
@@ -140,10 +144,10 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexGrow: 1,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 20,
-    width: "100%",
   },
   imageContainer: {
     width: "100%",
@@ -163,7 +167,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputContainer: {
-    width: "100%",
+    flex: 1,
     marginBottom: 20,
   },
   label: {
@@ -176,10 +180,9 @@ const styles = StyleSheet.create({
   inputView: {
     backgroundColor: "#fff",
     borderRadius: 25,
-    height: 50,
     justifyContent: "center",
     paddingHorizontal: 20,
-    width: "100%",
+    height: 50,
   },
   inputText: {
     backgroundColor: "transparent",
@@ -195,10 +198,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   loginBtn: {
-    width: "90%",
     backgroundColor: "#C36FDE",
     borderRadius: 25,
     height: 50,
+    width: 140,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,

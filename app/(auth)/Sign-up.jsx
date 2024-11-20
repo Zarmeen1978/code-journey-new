@@ -15,6 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
 import GlobalApi from "../shared/GlobalApi";
+import { useRouter } from "expo-router";
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -27,6 +28,7 @@ const SignUp = () => {
   const { setUser } = useContext(AppContext);
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
+  const router = useRouter();
 
   const submit = async () => {
     if (!form.email || !form.password || !form.username) {
@@ -62,6 +64,10 @@ const SignUp = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const onPressSignUp = () => {
+    router.push("/Sign-in");
   };
 
   return (
@@ -134,6 +140,10 @@ const SignUp = () => {
         >
           <Text style={styles.loginText}>SIGN UP</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={onPressSignUp}>
+          <Text style={styles.forgotAndSignUpText}>Sign In</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -147,14 +157,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#4B0082",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
   },
   scrollViewContent: {
+    flex: 1,
     flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 20,
-    width: "100%",
+  },
+  forgotAndSignUpText: {
+    color: "#fff",
+    fontSize: 12,
+    marginTop: 10,
+    textAlign: "center",
   },
   imageContainer: {
     width: "100%",
@@ -174,7 +189,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputContainer: {
-    width: "100%",
+    // width: "100%",
+    flex: 1,
     marginBottom: 20,
   },
   label: {
@@ -190,7 +206,6 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     paddingHorizontal: 20,
-    width: "100%",
   },
   inputText: {
     backgroundColor: "transparent",
@@ -198,9 +213,10 @@ const styles = StyleSheet.create({
     outlineStyle: "none",
     outlineWidth: 0,
     outlineColor: "transparent",
+    width: 140,
   },
   loginBtn: {
-    width: "90%",
+    width: 120,
     backgroundColor: "#C36FDE",
     borderRadius: 25,
     height: 50,

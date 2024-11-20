@@ -27,6 +27,7 @@ export default function CourseLists() {
   const getCourseList = async () => {
     try {
       let resp;
+      console.log(currentCourse, "sss");
       if (currentCourse === "C Course") {
         resp = (await GlobalApi.getCourseEnglishList()).data;
       } else if (currentCourse === "Python Course") {
@@ -37,13 +38,15 @@ export default function CourseLists() {
         // Default API call if no match for currentCourse
         resp = (await GlobalApi.getCourseEnglishList()).data;
       }
-
+      console.log(resp, "ressppp===>");
       const result = resp.data.map((item) => ({
         id: item.id,
         name: item.attributes.name,
         description: item.attributes.description,
-        image: item.attributes.image.data.attributes.url,
-        Topic: item.attributes.example,
+        image: item.attributes.image
+          ? item.attributes.image.data.attributes.url
+          : "https://next-images.123rf.com/index/_next/image/?url=https://assets-cdn.123rf.com/index/static/assets/top-section-bg.jpeg&w=3840&q=75",
+        Topic: item.attributes.modules,
       }));
 
       setCourseList(result);
@@ -53,6 +56,7 @@ export default function CourseLists() {
   };
 
   const onPressCourse = (course) => {
+    console.log(course, "etcc;");
     navigation.navigate("CourseDetails", {
       courseData: course,
       courseType: "text",

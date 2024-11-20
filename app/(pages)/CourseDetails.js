@@ -21,7 +21,7 @@ export default function CourseDetails() {
       if (resp.data.data) {
         const result = resp.data.data.map((item) => ({
           id: item.id,
-          courseContentId: item.attributes.example,
+          courseContentId: item.attributes.modules,
         }));
 
         setUserProgress(result);
@@ -52,6 +52,7 @@ export default function CourseDetails() {
         course={course}
         userProgress={userProgress}
         courseType={param.courseType}
+        courseData={param.courseData}
       />
     </ScrollView>
   );
