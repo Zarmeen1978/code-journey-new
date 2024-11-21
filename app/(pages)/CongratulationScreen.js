@@ -4,7 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import AppContext from "../context/AppContext";
 import GlobalApi from "../shared/GlobalApi";
-
+import LottieView from "lottie-react-native";
+import TickAnimation from "../components/TicAnimation";
 const CongratulationScreen = ({ route }) => {
   const navigation = useNavigation();
   const param = useRoute().params;
@@ -63,6 +64,15 @@ const CongratulationScreen = ({ route }) => {
         </TouchableOpacity>
       </View>
       <Text style={styles.congratulationText}>Congratulations!</Text>
+      {/* <View>
+        <LottieView
+          source={require("../assets/popup.json")}
+          autoplay
+          loop
+          style={{ width: 200, height: 200 }}
+        />
+        <TickAnimation />
+      </View> */}
       <Image source={require("../assets/win.jpg")} style={styles.image} />
       <Text style={styles.messageText}>
         You have successfully completed the task and gained {points} Experience
@@ -106,6 +116,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
+  welcome: {
+    width: "100%", // Ensure it takes full width
+    height: 300, // Set a fixed height
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
   image: {
     width: 330,
     height: 330,

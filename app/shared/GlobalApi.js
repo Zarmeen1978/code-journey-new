@@ -1,7 +1,7 @@
 import { create } from "apisauce";
 // define the api
 const api = create({
-  baseURL: "codejounrey.centralindia.cloudapp.azure.com/api",
+  baseURL: "https://codejounrey.centralindia.cloudapp.azure.com/api",
   // headers:
   //  { "X-API-Key": '29005877fb051c016dd26c0b4ed36b61c751bc59c474c352be6d8d6cf6fa60764a7820bea3f92364ffd9d6a6fa5a29d121fa5378f3d4c7eddc601a53e60a349185f256d6289a128e6731372e19d3277c0a50a4ae40aa99a3db43dba491fe1ed7f7228dbfe71763731dd85fe13cbf39af43887962337960c8f60961567a0fb9f9' },
 });
@@ -18,19 +18,29 @@ const getVideoCourse = () => api.get("vide-courses?populate=*");
 const getCourseList = () =>
   api.get("coursesv1s?populate=modules.lessons,modules.quiz");
 const getCourseUrduList = () =>
-  api.get("coursesv1s?populate=image&populate=modules.lessons&populate=modules.quiz&locale=ur-PK");
+  api.get(
+    "coursesv1s?populate=image&populate=modules.lessons&populate=modules.quiz&locale=ur-PK"
+  );
 const getCourseEnglishList = () =>
   api.get(
     "coursesv1s?populate=image&populate=modules.lessons&populate=modules.quiz"
   );
 const getPythonUrduCourse = () =>
-  api.get("pythoncourses?populate=*&locale=ur-PK");
+  api.get(
+    "pythoncoursev1s?populate=image&populate=modules.lessons&populate=modules.quiz&locale=ur-PK"
+  );
 const getPythonEnglishCourse = () =>
-  api.get("pythoncourses?populate=*&locale=en");
+  api.get(
+    "pythoncoursev1s?populate=image&populate=modules.lessons&populate=modules.quiz"
+  );
 const getJsUrduCourse = () =>
-  api.get("javascriptcourses?populate=*&locale=ur-PK");
+  api.get(
+    "javascriptcoursev1s?populate=image&populate=modules.lessons&populate=modules.quiz&locale=ur-PK"
+  );
 const getJsEnglishCourse = () =>
-  api.get("javascriptcourses?populate=*&locale=en");
+  api.get(
+    "javascriptcoursev1s?populate=image&populate=modules.lessons&populate=modules.quiz"
+  );
 
 //const getInformation=()=>api.get('details?populate=*');
 const getArticle = () => api.get("articles?populate=*locale=ur");

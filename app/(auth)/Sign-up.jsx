@@ -1,14 +1,13 @@
 import {
   Alert,
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Pressable,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import React, { useState, useContext, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -72,23 +71,23 @@ const SignUp = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={require("../assets/mimo.png")}
-            resizeMode="contain"
-            style={styles.sizeImage}
-          />
-        </View>
-        <Text style={styles.title}>SIGN UP</Text>
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoidingView}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <View style={styles.contentContainer}>
+          <View style={styles.imageContainer}>
+            <Image
+              source={require("../assets/mimo.png")}
+              resizeMode="contain"
+              style={styles.sizeImage}
+            />
+          </View>
+          <Text style={styles.title}>SIGN UP</Text>
 
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
-            <Pressable
-              onPress={() => emailInputRef.current.focus()}
-              style={styles.inputView}
-            >
+            <View style={styles.inputView}>
               <TextInput
                 ref={emailInputRef}
                 style={styles.inputText}
@@ -98,28 +97,21 @@ const SignUp = () => {
                 value={form.email}
                 onChangeText={(e) => setForm({ ...form, email: e })}
               />
-            </Pressable>
+            </View>
 
             <Text style={styles.label}>Username</Text>
-            <Pressable
-              onPress={() => emailInputRef.current.focus()}
-              style={styles.inputView}
-            >
+            <View style={styles.inputView}>
               <TextInput
-                ref={emailInputRef}
                 style={styles.inputText}
                 placeholder="Enter your username"
                 placeholderTextColor="#003f5c"
                 value={form.username}
                 onChangeText={(e) => setForm({ ...form, username: e })}
               />
-            </Pressable>
+            </View>
 
             <Text style={styles.label}>Password</Text>
-            <Pressable
-              onPress={() => passwordInputRef.current.focus()}
-              style={styles.inputView}
-            >
+            <View style={styles.inputView}>
               <TextInput
                 ref={passwordInputRef}
                 style={styles.inputText}
@@ -129,22 +121,22 @@ const SignUp = () => {
                 value={form.password}
                 onChangeText={(e) => setForm({ ...form, password: e })}
               />
-            </Pressable>
+            </View>
           </View>
-        </TouchableWithoutFeedback>
 
-        <TouchableOpacity
-          onPress={submit}
-          style={styles.loginBtn}
-          disabled={isSubmitting}
-        >
-          <Text style={styles.loginText}>SIGN UP</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={submit}
+            style={styles.loginBtn}
+            disabled={isSubmitting}
+          >
+            <Text style={styles.loginText}>SIGN UP</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={onPressSignUp}>
-          <Text style={styles.forgotAndSignUpText}>Sign In</Text>
-        </TouchableOpacity>
-      </ScrollView>
+          <TouchableOpacity onPress={onPressSignUp}>
+            <Text style={styles.forgotAndSignUpText}>Sign In</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -155,15 +147,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#4B0082",
-    alignItems: "center",
-    justifyContent: "center",
   },
-  scrollViewContent: {
+  keyboardAvoidingView: {
     flex: 1,
-    flexGrow: 1,
+  },
+  contentContainer: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 20,
+    padding: 20,
   },
   forgotAndSignUpText: {
     color: "#fff",
@@ -189,16 +181,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputContainer: {
-    // width: "100%",
-    flex: 1,
-    marginBottom: 20,
+    width: "100%",
+    paddingHorizontal: 20,
   },
   label: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "600",
     marginBottom: 5,
-    paddingLeft: 5,
   },
   inputView: {
     backgroundColor: "#fff",
@@ -206,24 +196,20 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     paddingHorizontal: 20,
+    marginBottom: 15,
   },
   inputText: {
-    backgroundColor: "transparent",
-    borderWidth: 0,
-    outlineStyle: "none",
-    outlineWidth: 0,
-    outlineColor: "transparent",
-    width: 140,
+    width: "100%",
+    color: "#000",
   },
   loginBtn: {
-    width: 120,
+    width: "90%",
     backgroundColor: "#C36FDE",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    marginBottom: 10,
   },
   loginText: {
     color: "#F2F0F4",
